@@ -15,6 +15,12 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
+
+
+	"pieces"
+
+
+
 )
 
 var (
@@ -42,6 +48,8 @@ var (
 )
 
 func main() {
+
+
 
 	fmt.Print("What is Your Color ->  W or B -> ")
 	var second string
@@ -159,6 +167,10 @@ func main() {
 
 							TheXpositionToMove = Change_letters_numbers2[vv[0]]
 							TheYpositionToMove = Change_numbers_letters2[vv[1]]
+
+						
+
+
 							break
 						}
 
