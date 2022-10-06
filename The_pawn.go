@@ -1,5 +1,7 @@
+package main
 
-package pieces
+
+
 // Function to calculate the color of the pice to eat
 func check(A [6]string, B string) bool {
 
@@ -13,6 +15,8 @@ func check(A [6]string, B string) bool {
 	return xddd
 }
 
+
+
 var (
 	piecesToatac [6]string
 	to_move      int
@@ -20,11 +24,16 @@ var (
 	allowedMoves = map[int]position1{}
 )
 
+//func return all the elements
+func ReturnValues() map[int]position1{
+	return allowedMoves
+}
+
 type position1 struct {
 	A, B int
 }
 
-type The_pawn struct {
+type The_pawn1 struct {
 	X1    int
 	Y1    int
 	white [6]string
@@ -33,7 +42,7 @@ type The_pawn struct {
 	board [9][9]string
 }
 
-func (moves *The_pawn) Allowed_moves() {
+func (moves *The_pawn1) Allowed_moves() {
 
 	boardI := moves.board
 
@@ -113,6 +122,7 @@ func (moves *The_pawn) Allowed_moves() {
 			if check(moves.white, boardI[moves.Y1+(to_move*1)][moves.X1+(to_move*-1)]) {
 				allowedMoves[len(allowedMoves)+1] = position1{moves.Y1 + (to_move * 1), moves.X1 + (to_move * -1)}
 
+			
 			}
 
 		}
@@ -120,3 +130,4 @@ func (moves *The_pawn) Allowed_moves() {
 	}
 
 }
+

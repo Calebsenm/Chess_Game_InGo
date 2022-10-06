@@ -15,12 +15,8 @@ import (
 	"os/exec"
 	"strconv"
 	"strings"
-
-
-	"pieces"
-
-
-
+	
+	
 )
 
 var (
@@ -47,9 +43,10 @@ var (
 	TheYpositionToMove int
 )
 
+
 func main() {
 
-
+	
 
 	fmt.Print("What is Your Color ->  W or B -> ")
 	var second string
@@ -121,7 +118,17 @@ func main() {
 							
 							TheXposition = Change_letters_numbers[v[0]]
 							TheYposition = Change_numbers_numbers[v[1]]
-							break
+							
+							
+							algoritmoXDDDD := The_pawn1{TheXposition,TheYposition,B,N,Board}
+							algoritmoXDDDD.Allowed_moves()
+
+							if len(ReturnValues()) == 0{
+								fmt.Println("La ficha está bloqueda")
+							}	else{
+								break
+							}
+
 						}
 
 					}
@@ -168,10 +175,26 @@ func main() {
 							TheXpositionToMove = Change_letters_numbers2[vv[0]]
 							TheYpositionToMove = Change_numbers_letters2[vv[1]]
 
+							
 						
+							algoritmoXDDDD := The_pawn1{TheXpositionToMove,TheYpositionToMove,B,N,Board}
+							algoritmoXDDDD.Allowed_moves()
 
+							Bread_cheess := ReturnValues()
 
-							break
+							the_key := false
+							
+							for i := 0; i < len(Bread_cheess); i++ {
+								if Bread_cheess[i].A == TheYpositionToMove && Bread_cheess[i].B == TheXpositionToMove {
+									the_key = true
+								}
+							}
+
+							if the_key == true{
+								break
+							}
+
+							
 						}
 
 					}
@@ -207,3 +230,5 @@ func main() {
 	}
 
 }
+
+
