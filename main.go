@@ -5,7 +5,7 @@
 
 // I wish you the best caleb of the future you are capable do not give up. you are going to achieve it you are able
 
-// He terminado la primera parte el programa puede mover las fichas correctamente horas de desarrollo 10  
+// He terminado la primera parte el programa puede mover las fichas correctamente horas de desarrollo 10
 
 package main
 
@@ -14,9 +14,8 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+
 	"strings"
-	
-	
 )
 
 var (
@@ -41,12 +40,32 @@ var (
 
 	TheXpositionToMove int
 	TheYpositionToMove int
+
+	/// this is for thet let moves
+	to_move      int
+	allowedMoves = map[int]position_let{}
+	piecesToatac [6]string
 )
 
+type position_let struct {
+	A, B int
+}
+
+// this is for check the pieces
+// Function to calculate the color of the pice to eat
+func check(A [6]string, B string) bool {
+
+	xddd := false
+	for i := 0; i < len(A); i++ {
+		if " "+ A[i] +" "== B {
+			xddd = true
+		}
+
+	}
+	return xddd
+}
 
 func main() {
-
-	
 
 	fmt.Print("What is Your Color ->  W or B -> ")
 	var second string
@@ -56,9 +75,9 @@ func main() {
 	for {
 
 		cmd := exec.Command("cmd", "/c", "cls")
-    	cmd.Stdout = os.Stdout
-    	cmd.Run()
-	
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+
 		if second == "b" {
 			for i := 8; i > -1; i-- {
 				for j := 8; j > -1; j-- {
@@ -115,18 +134,125 @@ func main() {
 							// this is for y
 							Change_numbers_numbers := map[string]int{"1": 7, "2": 6, "3": 5, "4": 4, "5": 3, "6": 2, "7": 1, "8": 0}
 
-							
 							TheXposition = Change_letters_numbers[v[0]]
 							TheYposition = Change_numbers_numbers[v[1]]
-							
-							
-							algoritmoXDDDD := The_pawn1{TheXposition,TheYposition,B,N,Board}
-							algoritmoXDDDD.Allowed_moves()
 
-							if len(ReturnValues()) == 0{
-								fmt.Println("La ficha está bloqueda")
-							}	else{
-								break
+							// algoritmoXDDDD := The_pawn1{TheXposition,TheYposition,B,N,Board}
+							// algoritmoXDDDD.Allowed_moves()
+
+							// if len(ReturnValues()) == 0{
+							// 	fmt.Println("La ficha está bloqueda")
+							// }	else{
+							// 	break
+							// }
+
+							//--------------------------------------------------------------------------------------------------------------------------
+
+							// if the pice position is white
+							if Board[TheYposition][TheXposition] == B[0] {
+								piecesToatac = N
+								to_move = -1
+							}
+							// if the pice position is black
+							if Board[TheYposition][TheXposition] == N[0] {
+								piecesToatac = B
+
+								to_move = 1
+
+							}
+
+							fmt.Println(Board[TheYposition][TheXposition])
+							fmt.Println(B[0])
+							fmt.Println(N[0])
+
+							// this is for the pawn
+							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							if Board[TheYposition][TheXposition] == " " +B[0] + " " || Board[TheYposition][TheXposition] == " " + N[0] + " "{
+
+								fmt.Println(Board[TheYposition][TheXposition])
+
+
+
+								//the first move
+								if TheYposition+to_move == 8 && Board[TheYposition][TheXposition] == " " +B[0] + " " {
+
+									fmt.Println(Board[TheYposition][TheXposition] +"Xd2")
+									// the position 2 front
+									if Board[TheYposition+(to_move*2)][TheXposition] == " - " {
+										allowedMoves[len(allowedMoves)] = position_let{TheYposition + (to_move * 2), TheXposition}
+									}
+								} else if TheYposition+to_move == 1 && Board[TheYposition][TheXposition] == " " +N[0] + " " {
+									// the position 2 front
+									fmt.Println(Board[TheYposition][TheXposition] +"Xd1")
+
+									if Board[TheYposition+(to_move*2)][TheXposition] == " - " {
+										allowedMoves[len(allowedMoves)] = position_let{TheYposition + (to_move * 2), TheXposition}
+									}
+								}
+
+								// the other movements   the next
+								//the first move  for the whithe pieces
+								if Board[TheYposition][TheXposition] == " " +B[0] + " "{
+									// the position 2 front
+									if Board[TheYposition+(to_move*1)][TheXposition] == " - " {
+										fmt.Println(Board[TheYposition][TheXposition] +"Xd")
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition}
+
+									}
+
+									if TheXposition+(to_move*1) >= 0 {
+										// left
+										if check(N, Board[TheYposition+(to_move*1)][TheXposition+(to_move*1)]) == true {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * 1)}
+
+										}
+									}
+
+									if TheXposition+(to_move*1) <= 8 {
+										// left
+										// right
+										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*-1)]) {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * -1)}
+
+										}
+
+									}
+
+									// this is for the black pieces
+								} else if Board[TheYposition][TheXposition] == N[0] {
+									// the position front
+									if Board[TheYposition+(to_move*1)][TheXposition] == " - " {
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition}
+									}
+
+									if TheXposition+(to_move*1) >= 0 {
+										// left
+										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*1)]) == true {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * 1)}
+
+										}
+									}
+
+									if TheXposition+(to_move*1) <= 8 {
+										// left
+										// right
+										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*-1)]) {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * -1)}
+
+										}
+
+									}
+
+								}
+
+								
+								fmt.Println(allowedMoves)
+								if len(allowedMoves) == 0 {
+									fmt.Println("La ficha está bloqueda")
+								} else {
+									break
+								}
+
 							}
 
 						}
@@ -175,26 +301,24 @@ func main() {
 							TheXpositionToMove = Change_letters_numbers2[vv[0]]
 							TheYpositionToMove = Change_numbers_letters2[vv[1]]
 
-							
-						
-							algoritmoXDDDD := The_pawn1{TheXpositionToMove,TheYpositionToMove,B,N,Board}
-							algoritmoXDDDD.Allowed_moves()
+							// algoritmoXDDDD := The_pawn1{TheXpositionToMove,TheYpositionToMove,B,N,Board}
+							// algoritmoXDDDD.Allowed_moves()
 
-							Bread_cheess := ReturnValues()
-
+							Bread_cheess := allowedMoves
 							the_key := false
-							
+
 							for i := 0; i < len(Bread_cheess); i++ {
 								if Bread_cheess[i].A == TheYpositionToMove && Bread_cheess[i].B == TheXpositionToMove {
 									the_key = true
 								}
 							}
 
-							if the_key == true{
+							if the_key == true {
 								break
 							}
 
-							
+							// break
+
 						}
 
 					}
@@ -208,19 +332,13 @@ func main() {
 			changer := Board[TheYpositionToMove][TheXpositionToMove]
 			Board[TheYpositionToMove][TheXpositionToMove] = Board[TheYposition][TheXposition]
 			Board[TheYposition][TheXposition] = changer
-			
-			
 
-			
+		}
 
-			
-
-		} 
-		
-		if it%2 == 1  {
+		if it%2 == 1 {
 
 			// the algoritmo Hacker
-			
+
 			fmt.Print("El moviento de la maquina es ? ")
 			var second string
 			fmt.Scanln(&second)
@@ -230,5 +348,3 @@ func main() {
 	}
 
 }
-
-

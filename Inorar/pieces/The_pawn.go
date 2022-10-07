@@ -1,4 +1,4 @@
-package main
+package pieces
 
 
 
@@ -19,8 +19,9 @@ func check(A [6]string, B string) bool {
 
 var (
 	piecesToatac [6]string
-	to_move      int
 
+	
+	to_move      int
 	allowedMoves = map[int]position1{}
 )
 
