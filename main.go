@@ -42,13 +42,13 @@ var (
 	TheYpositionToMove int
 
 	/// this is for thet let moves
-	to_move      int
+	to_move     int
 	allowedMoves = map[int]position_let{}
 	piecesToatac [6]string
 )
 
 type position_let struct {
-	A, B int
+	AAA, BBB int
 }
 
 // this is for check the pieces
@@ -161,9 +161,7 @@ func main() {
 
 							}
 
-							fmt.Println(Board[TheYposition][TheXposition])
-							fmt.Println(B[0])
-							fmt.Println(N[0])
+						
 
 							// this is for the pawn
 							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,70 +172,71 @@ func main() {
 
 
 								//the first move
-								if TheYposition+to_move == 8 && Board[TheYposition][TheXposition] == " " +B[0] + " " {
+								fmt.Println(TheYposition+to_move )
+								if TheYposition+to_move == 6 && Board[TheYposition][TheXposition] == " " +B[0] + " " {
 
-									fmt.Println(Board[TheYposition][TheXposition] +"Xd2")
 									// the position 2 front
-									if Board[TheYposition+(to_move*2)][TheXposition] == " - " {
-										allowedMoves[len(allowedMoves)] = position_let{TheYposition + (to_move * 2), TheXposition}
+							
+									if Board[TheYposition -2][TheXposition] == " - " {
+
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition -2, TheXposition}
 									}
+
+		
 								} else if TheYposition+to_move == 1 && Board[TheYposition][TheXposition] == " " +N[0] + " " {
 									// the position 2 front
-									fmt.Println(Board[TheYposition][TheXposition] +"Xd1")
-
-									if Board[TheYposition+(to_move*2)][TheXposition] == " - " {
-										allowedMoves[len(allowedMoves)] = position_let{TheYposition + (to_move * 2), TheXposition}
+									if Board[TheYposition + 2][TheXposition] == " - " {
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 2, TheXposition}
 									}
 								}
 
 								// the other movements   the next
 								//the first move  for the whithe pieces
 								if Board[TheYposition][TheXposition] == " " +B[0] + " "{
-									// the position 2 front
-									if Board[TheYposition+(to_move*1)][TheXposition] == " - " {
-										fmt.Println(Board[TheYposition][TheXposition] +"Xd")
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition}
+									// the position  front
+									if Board[TheYposition -1][TheXposition] == " - " {
+
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition -1, TheXposition}
 
 									}
 
-									if TheXposition+(to_move*1) >= 0 {
+									if TheXposition -1 >= 0 {
 										// left
-										if check(N, Board[TheYposition+(to_move*1)][TheXposition+(to_move*1)]) == true {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * 1)}
+										if check(N, Board[TheYposition -1][TheXposition -1]) == true {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition -1, TheXposition -1}
 
 										}
 									}
 
-									if TheXposition+(to_move*1) <= 8 {
-										// left
+									if TheXposition + 1 <= 8 {
+										
 										// right
-										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*-1)]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * -1)}
+										if check(B, Board[TheYposition -1][TheXposition +1]) {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition -1, TheXposition +1}
 
 										}
 
 									}
 
 									// this is for the black pieces
-								} else if Board[TheYposition][TheXposition] == N[0] {
+								} else if Board[TheYposition][TheXposition] == " " +N[0] + " "{
 									// the position front
-									if Board[TheYposition+(to_move*1)][TheXposition] == " - " {
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition}
+									if Board[TheYposition +1][TheXposition] == " - " {
+										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition +1 , TheXposition}
 									}
 
-									if TheXposition+(to_move*1) >= 0 {
-										// left
-										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*1)]) == true {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * 1)}
+									if TheXposition -1 >= 0 {
+										// rigth
+										if check(B, Board[TheYposition +1 ][TheXposition -1]) == true {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition -1}
 
 										}
 									}
 
-									if TheXposition+(to_move*1) <= 8 {
+									if TheXposition +1 <= 8 {
 										// left
-										// right
-										if check(B, Board[TheYposition+(to_move*1)][TheXposition+(to_move*-1)]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + (to_move * 1), TheXposition + (to_move * -1)}
+										if check(B, Board[TheYposition +1][TheXposition +1]) {
+											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition +1}
 
 										}
 
@@ -301,18 +300,20 @@ func main() {
 							TheXpositionToMove = Change_letters_numbers2[vv[0]]
 							TheYpositionToMove = Change_numbers_letters2[vv[1]]
 
-							// algoritmoXDDDD := The_pawn1{TheXpositionToMove,TheYpositionToMove,B,N,Board}
-							// algoritmoXDDDD.Allowed_moves()
-
-							Bread_cheess := allowedMoves
+		
+							
 							the_key := false
 
-							for i := 0; i < len(Bread_cheess); i++ {
-								if Bread_cheess[i].A == TheYpositionToMove && Bread_cheess[i].B == TheXpositionToMove {
+							for i := 0; i < len(allowedMoves); i++ {
+
+								if allowedMoves[i+1].AAA  == TheYpositionToMove && allowedMoves[i+1].BBB  == TheXpositionToMove {
 									the_key = true
+									
+
 								}
 							}
 
+						
 							if the_key == true {
 								break
 							}
@@ -332,6 +333,11 @@ func main() {
 			changer := Board[TheYpositionToMove][TheXpositionToMove]
 			Board[TheYpositionToMove][TheXpositionToMove] = Board[TheYposition][TheXposition]
 			Board[TheYposition][TheXposition] = changer
+
+			for k := range allowedMoves {
+				delete(allowedMoves, k)
+			}
+			
 
 		}
 
