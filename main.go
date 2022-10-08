@@ -14,8 +14,9 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
-
 	"strings"
+	
+	"main/pieces_"
 )
 
 var (
@@ -66,6 +67,9 @@ func check(A [6]string, B string) bool {
 }
 
 func main() {
+
+	pieces_.Hello()
+
 
 	fmt.Print("What is Your Color ->  W or B -> ")
 	var second string
@@ -253,6 +257,43 @@ func main() {
 								}
 
 							}
+
+
+							//this is for the Rook 
+							if Board[TheYposition][TheXposition] == " "+B[1]+" " || Board[TheYposition][TheXposition] == " "+ N[1] +" "{
+
+								a := pieces_.Rook_{TheXposition,TheYposition,N,B,Board}
+								a.Rook_allowedMovesRook()
+								a.Running()
+
+								
+								for i := 0; i < len(pieces_.Rook_allowedMoves_Rook_play); i++ {
+									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Rook_allowedMoves_Rook_play[i].ASSS, pieces_.Rook_allowedMoves_Rook_play[i+1].BSSS}
+								}
+				
+
+								fmt.Println(allowedMoves)
+								if len(allowedMoves) == 0 {
+									fmt.Println("La ficha está bloqueda")
+								} else {
+									break
+								}
+								
+
+
+							}
+
+							// this is for the Queen
+							if Board[TheYposition][TheXposition] == " "+B[1]+" " || Board[TheYposition][TheXposition] == " "+ N[1] +" "{
+
+							}
+
+
+							// this is for the Bishop
+
+							//this is for the Knight 
+
+							//this is for the King
 
 						}
 
