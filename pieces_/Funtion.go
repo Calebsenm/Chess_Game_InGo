@@ -1,5 +1,7 @@
 package pieces_
 
+
+
 // this is for the structure of a diccionary
 type Contructor struct{
 	This_A int 
@@ -28,19 +30,20 @@ func check__EdgeNumber(Only_Y [8] int, Only_X [8] int,value_Y int ,value_X int )
 	XD1 := false
 	XD2 := false
 
-
 	for i := 0; i < len(Only_Y); i++ {
 		if Only_Y[i] == value_Y{
 			XD1 = true
+			
 		}
 	}
 
 	for j := 0; j < len(Only_X); j++ {
 		if Only_X[j] == value_X{
-			XD1 = true
+			XD2 = true
+		
 		}
 	}
-	
+
 	return XD1 && XD2
 
 }

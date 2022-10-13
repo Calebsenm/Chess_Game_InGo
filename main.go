@@ -272,7 +272,7 @@ func main() {
 							}
 
 							// this is for the Queen
-							if Board[TheYposition][TheXposition] == " "+B[2]+" " || Board[TheYposition][TheXposition] == " "+N[1]+" " {
+							if Board[TheYposition][TheXposition] == " "+B[2]+" " || Board[TheYposition][TheXposition] == " "+N[2]+" " {
 
 								b := pieces_.Queen_{TheYposition, TheXposition, N, B, Board}
 								b.Queen_allowedMoves_Queen_play()
