@@ -31,8 +31,8 @@ var (
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " "},
-		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
+		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + N[0] + " "},
+		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + N[3] + " ", " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 
@@ -371,13 +371,15 @@ func main() {
 			fmt.Println("The position y", TheYpositionToMove)
 			fmt.Println("The position x", TheXpositionToMove)
 
-			changer := Board[TheYpositionToMove][TheXpositionToMove]
+			// changer := Board[TheYpositionToMove][TheXpositionToMove]
 			Board[TheYpositionToMove][TheXpositionToMove] = Board[TheYposition][TheXposition]
-			Board[TheYposition][TheXposition] = changer
+			Board[TheYposition][TheXposition] = " - "
+
 
 			for k := range allowedMoves {
 				delete(allowedMoves, k)
 			}
+			
 			
 
 		}

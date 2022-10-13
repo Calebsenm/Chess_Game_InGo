@@ -30,19 +30,22 @@ func (v *Rook_) Rook_allowedMovesRook() {
 
 	iterator := 1
 	for {
-		if v.Y_Rook_-iterator >= 0 {
-			if v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_] == " - " || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_]) == true {
 
-				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_ - iterator, v.X_Rook_}
+		if v.Y_Rook_-iterator >= 0 {
+			if v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_] == " - "  || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_]) == true{
+				
+				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_-iterator , v.X_Rook_ }
+				
 				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_]) == true {
 					break
 				}
 
+			}  else {
+				break
 			}
 
-			
-		}	else{
-				break
+		}else {
+			break
 		}
 
 		iterator++
@@ -59,10 +62,12 @@ func (v *Rook_) Rook_allowedMovesRook() {
 					break
 				}
 
-			}
-			
-		}	else{
+			} else {
 				break
+			}
+
+		}else {
+			break
 		}
 		iterator1++
 	}
@@ -78,12 +83,14 @@ func (v *Rook_) Rook_allowedMovesRook() {
 					break
 				}
 
-			}
-			
-		}	else{
+			} else {
 				break
+			}
+
+		}else {
+			break
 		}
-		
+
 		iterator2++
 	}
 
@@ -94,15 +101,21 @@ func (v *Rook_) Rook_allowedMovesRook() {
 			if v.The_Board_Rook[v.Y_Rook_+iterator3][v.X_Rook_] == " - " || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_+iterator3][v.X_Rook_]) == true {
 
 				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_ + iterator3, v.X_Rook_}
-
-			}
-			
-		}	else{
+				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_ + iterator3][v.X_Rook_]) == true {
+					break
+				}
+			} else {
 				break
+			}
+
+		}else {
+			break
 		}
-		
+
 		iterator3++
 	}
+
+	
 
 }
 
@@ -111,8 +124,10 @@ func check(A [6]string, B string) bool {
 
 	xddd := false
 	for i := 0; i < len(A); i++ {
-		if A[i] == B {
+		if  " " + A[i] + " " ==   B  {
 			xddd = true
+			
+			
 		}
 
 	}
