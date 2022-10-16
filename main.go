@@ -105,6 +105,7 @@ func main() {
 			var position1 string
 			var position2 string
 
+			
 			for {
 				fmt.Print("Please enter the position > ")
 				fmt.Scanln(&position1)
