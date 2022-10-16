@@ -292,7 +292,25 @@ func main() {
 							}
 
 							// this is for the Bishop
+						
+							if Board[TheYposition][TheXposition] == " "+B[5]+" " || Board[TheYposition][TheXposition] == " "+N[5]+" " {
 
+								bbbbb := pieces_.Bishop_{TheYposition, TheXposition, N, B, Board}
+								bbbbb.Bishop_AllowedMoves_bishop()
+								
+								
+								for i := 0; i < len(pieces_.Queen_allowedMoves_Queen___); i++ {
+									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Queen_allowedMoves_Queen___[i+1].This_A, pieces_.Queen_allowedMoves_Queen___[i+1].This_B}
+								}
+
+								fmt.Println(allowedMoves)
+								if len(allowedMoves) == 0 {
+									fmt.Println("La ficha está bloqueda")
+								} else {
+									break
+								}
+
+							}
 							//this is for the Knight
 
 							//this is for the King
