@@ -299,8 +299,8 @@ func main() {
 								bbbbb.Bishop_AllowedMoves_bishop()
 								
 								
-								for i := 0; i < len(pieces_.Queen_allowedMoves_Queen___); i++ {
-									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Queen_allowedMoves_Queen___[i+1].This_A, pieces_.Queen_allowedMoves_Queen___[i+1].This_B}
+								for i := 0; i < len(pieces_.Bishop_AllowedMoves_bishop); i++ {
+									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Bishop_AllowedMoves_bishop[i+1].X, pieces_.Bishop_AllowedMoves_bishop[i+1].This_B}
 								}
 
 								fmt.Println(allowedMoves)
