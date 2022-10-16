@@ -14,8 +14,6 @@ type Bishop_ struct {
 }
 
 
-
-
 func (iop * Bishop_) Bishop_AllowedMoves_bishop_ToPLay(){
     
     if checker_Bishop(iop.White_pieces_2,iop.The_Board_Bishop[iop.Y_BY][iop.X_BY]){
