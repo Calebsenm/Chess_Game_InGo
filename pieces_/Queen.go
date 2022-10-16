@@ -21,7 +21,7 @@ func (b *Queen_) Queen_allowedMoves_Queen_play() {
 	fmt.Println(b.The_Board_Queen[b.Y_Queen][b.X_Queen])
 
 	// this is for the white pieces
-	if checker(b.White_pieces_1,b.The_Board_Queen[b.Y_Queen][b.X_Queen]) == true{
+	if checker(b.White_pieces_1,b.The_Board_Queen[b.Y_Queen][b.X_Queen]){
 		// this is for the up moves
 		queen_Algoritmit(b.Y_Queen,b.X_Queen, 0 , -1,"UP",b.The_Board_Queen,b.Black_pieces_1)
 		//this is for the up right moves
@@ -79,7 +79,7 @@ func queen_Algoritmit(The__Y int, The__X int, Move_X int , Move_Y int, The_board
 		if Move_X == 1 { counter2 ++;  }	else{ counter2 --; }
 		
 
-		if check__EdgeNumber(The_onlyMoves_y,The_onlyMoves_x,The__Y + counter1,The__X + counter2) == true {
+		if check__EdgeNumber(The_onlyMoves_y,The_onlyMoves_x,The__Y + counter1,The__X + counter2){
 
 			fmt.Println(Board___[The__Y + counter1 ][The__X + counter2])
 			if Board___[The__Y + counter1 ][The__X + counter2] == " - " {
@@ -88,7 +88,7 @@ func queen_Algoritmit(The__Y int, The__X int, Move_X int , Move_Y int, The_board
 			
 			}	else{
 
-					if checker(TheColor__, Board___[The__Y + counter1][The__X + counter2]) == true {
+					if checker(TheColor__, Board___[The__Y + counter1][The__X + counter2]){
 						Queen_allowedMoves_Queen___[len(Queen_allowedMoves_Queen___)+1]= Contructor{The__Y + counter1, The__X + counter2}
 						
 						

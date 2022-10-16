@@ -15,28 +15,28 @@ type Bishop_ struct {
 
 
 
-func (iop * Bishop_) Bishop_AllowedMoves_bishop(){
+func (iop * Bishop_) Bishop_AllowedMoves_bishop_ToPLay(){
     
-    if checker(iop.White_pieces_1,iop.The_Board_Queen[iop.Y_Queen][iop.X_Queen]) == true{
+    if checker_Bishop(iop.White_pieces_2,iop.The_Board_Bishop[iop.Y_BY][iop.X_BY]){
       // this is UP right
-      ichecher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.Black_pieces_2);
+      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.Black_pieces_2);
       //this is UP left
-      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.Black_pieces_2)
+      checher_Bishop(iop.Y_BY , iop.X_BY , -1, -1, iop.The_Board_Bishop, iop.Black_pieces_2)
       // this is for the Down left
-      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.Black_pieces_2)
+      checher_Bishop(iop.Y_BY , iop.X_BY , +1, +1, iop.The_Board_Bishop, iop.Black_pieces_2)
       // this is for the  Down right
-      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.Black_pieces_2)
+      checher_Bishop(iop.Y_BY , iop.X_BY , +1, -1, iop.The_Board_Bishop, iop.Black_pieces_2)
 
 
     } else{
       // this is UP right
-      ichecher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.White_pieces_2);
+      checher_Bishop(iop.Y_BY , iop.X_BY , +1, +1, iop.The_Board_Bishop, iop.White_pieces_2);
       //this is UP left
-      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.White_pieces_2)
+      checher_Bishop(iop.Y_BY , iop.X_BY , +1, -1, iop.The_Board_Bishop, iop.White_pieces_2)
       // this is for the Down left
       checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.White_pieces_2)
       // this is for the  Down right
-      checher_Bishop(iop.Y_BY , iop.X_BY , -1, +1, iop.The_Board_Bishop, iop.White_pieces_2)
+      checher_Bishop(iop.Y_BY , iop.X_BY , -1, -1, iop.The_Board_Bishop, iop.White_pieces_2)
     }
   } 
 
@@ -53,8 +53,8 @@ func (iop * Bishop_) Bishop_AllowedMoves_bishop(){
         break 
       }
 
-      if Board_[Y_BYY + iter_1][X_BYY + iter_2] == " - " || checker(TheColor_,Y_BYY + iter_1 , X_BYY + iter_2) == true{
-        Bishop_allowedMoves_Queen__[len(Bishop_allowedMoves_Queen__)+1] = Contructor{Y_BYY + iter_1 , X_BYY + iter_2 }
+      if Board_[Y_BYY + iter_1][X_BYY + iter_2] == " - " || checker_Bishop(TheColor_,Board_[Y_BYY + iter_1][X_BYY + iter_2]){
+        Bishop_allowedMoves_[len(Bishop_allowedMoves_)+1] = Contructor{Y_BYY + iter_1 , X_BYY + iter_2 }
       
       } else {
           break
@@ -75,4 +75,19 @@ func (iop * Bishop_) Bishop_AllowedMoves_bishop(){
       }
     }
    
+}
+
+// Function to calculate the color of the pice to eat
+func checker_Bishop(Piece_Color [6]string, Color_Position string) bool {
+
+	xddd := false
+	for i := 0; i < len(Piece_Color); i++ {
+		if  " " + Piece_Color[i] + " " ==   Color_Position  {
+			xddd = true
+			
+			
+		}
+
+	}
+	return xddd
 }

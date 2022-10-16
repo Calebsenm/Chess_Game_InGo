@@ -45,7 +45,7 @@ var (
 	/// this is for thet let moves
 	to_move      int
 	allowedMoves = map[int]position_let{}
-	piecesToatac [6]string
+	// piecesToatac [6]string
 )
 
 type position_let struct {
@@ -130,7 +130,7 @@ func main() {
 							}
 
 						}
-						if itero == true {
+						if itero {
 
 							// this is for x
 							Change_letters_numbers := map[string]int{"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8}
@@ -153,12 +153,12 @@ func main() {
 
 							// if the pice position is white
 							if Board[TheYposition][TheXposition] == B[0] {
-								piecesToatac = N
+								// piecesToatac = N
 								to_move = -1
 							}
 							// if the pice position is black
 							if Board[TheYposition][TheXposition] == N[0] {
-								piecesToatac = B
+								// piecesToatac = B
 
 								to_move = 1
 
@@ -200,7 +200,7 @@ func main() {
 
 									if TheXposition-1 >= 0 {
 										// left
-										if check(N, Board[TheYposition-1][TheXposition-1]) == true {
+										if check(N, Board[TheYposition-1][TheXposition-1]) {
 											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition - 1}
 
 										}
@@ -225,7 +225,7 @@ func main() {
 
 									if TheXposition-1 >= 0 {
 										// rigth
-										if check(B, Board[TheYposition+1][TheXposition-1]) == true {
+										if check(B, Board[TheYposition+1][TheXposition-1]) {
 											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition - 1}
 
 										}
@@ -296,11 +296,11 @@ func main() {
 							if Board[TheYposition][TheXposition] == " "+B[5]+" " || Board[TheYposition][TheXposition] == " "+N[5]+" " {
 
 								bbbbb := pieces_.Bishop_{TheYposition, TheXposition, N, B, Board}
-								bbbbb.Bishop_AllowedMoves_bishop()
+								bbbbb.Bishop_AllowedMoves_bishop_ToPLay()
 								
 								
-								for i := 0; i < len(pieces_.Bishop_AllowedMoves_bishop); i++ {
-									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Bishop_AllowedMoves_bishop[i+1].X, pieces_.Bishop_AllowedMoves_bishop[i+1].This_B}
+								for i := 0; i < len(pieces_.Bishop_allowedMoves_); i++ {
+									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Bishop_allowedMoves_[i+1].This_A, pieces_.Bishop_allowedMoves_[i+1].This_B}
 								}
 
 								fmt.Println(allowedMoves)
@@ -352,7 +352,7 @@ func main() {
 							}
 
 						}
-						if itero == true {
+						if itero {
 							// this is for x
 							Change_letters_numbers2 := map[string]int{"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8}
 							// this is for y
@@ -371,7 +371,7 @@ func main() {
 								}
 							}
 
-							if the_key == true {
+							if the_key {
 								break
 							}
 
