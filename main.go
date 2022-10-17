@@ -31,8 +31,8 @@ var (
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + N[0] + " "},
-		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + N[3] + " ", " " + B[1] + " "},
+		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " "},
+		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 
@@ -313,6 +313,28 @@ func main() {
 
 							}
 							//this is for the Knight
+							if Board[TheYposition][TheXposition] == " "+B[3]+" " || Board[TheYposition][TheXposition] == " "+N[3]+" " {
+
+						
+
+								XU := pieces_.Knight_{TheYposition,TheXposition, N , B ,Board}
+								XU.Knight_Allowed_Play()
+
+								for i := 0; i < len(pieces_.Knight_allowedMoves__); i++ {
+									allowedMoves[len(allowedMoves) + 1] = position_let{pieces_.Knight_allowedMoves__[i+1].This_A, pieces_.Knight_allowedMoves__[i+1].This_B}
+							
+								}
+
+								fmt.Println(allowedMoves)
+								if len(allowedMoves) == 0 {
+									fmt.Println("La ficha está bloqueda")
+								} else {
+									break
+								}
+
+							}
+
+						
 
 							//this is for the King
 
