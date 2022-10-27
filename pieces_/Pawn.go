@@ -28,7 +28,10 @@ func (P * Pawn__) Pawn_Allowed_Play (){
 
 func checker_Pawn(y int , x int ,moviToA int , moviToB int , board [9][9] string , color [6] string){
 
-	if y + moviToA 
+	if y + moviToA >= 1 && y {
 
 
+    
+    }
+  
 }
