@@ -62,8 +62,8 @@ func checher_Knight(Y_ int, X_ int, M_A int, M_B int, BD_ [9][9]string, Color_ [
 
 	if Y_ + it_1 >= 1 && Y_ + it_1 <= 7 && X_ + it_2 >= 1 && X_ + it_2 <=  8 {
 		if BD_[Y_+it_1][X_+it_2] == " - " || checker(Color_, BD_[Y_+it_1][X_+it_2]) {
-		Knight_allowedMoves__[len(Knight_allowedMoves__)+1] = Contructor{Y_ + it_1, X_ + it_2}
-	}
+			Knight_allowedMoves__[len(Knight_allowedMoves__)+1] = Contructor{Y_ + it_1, X_ + it_2}
+		}
 
 	}
 
