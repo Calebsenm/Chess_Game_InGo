@@ -152,18 +152,18 @@ func main() {
 
 							//--------------------------------------------------------------------------------------------------------------------------
 
-							// if the pice position is white
-							if Board[TheYposition][TheXposition] == B[0] {
-								// piecesToatac = N
-								to_move = -1
-							}
-							// if the pice position is black
-							if Board[TheYposition][TheXposition] == N[0] {
-								// piecesToatac = B
+							// // if the pice position is white
+							// if Board[TheYposition][TheXposition] == B[0] {
+							// 	// piecesToatac = N
+							// 	to_move = -1
+							// }
+							// // if the pice position is black
+							// if Board[TheYposition][TheXposition] == N[0] {
+							// 	// piecesToatac = B
 
-								to_move = 1
+							// 	to_move = 1
 
-							}
+							// }
 
 							// this is for the pawn
 							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -171,84 +171,98 @@ func main() {
 
 								fmt.Println(Board[TheYposition][TheXposition])
 
-								//the first move
-								fmt.Println(TheYposition + to_move)
-								if TheYposition+to_move == 6 && Board[TheYposition][TheXposition] == " "+B[0]+" " {
+								// //the first move
+								// fmt.Println(TheYposition + to_move)
+								// if TheYposition+to_move == 6 && Board[TheYposition][TheXposition] == " "+B[0]+" " {
 
-									// the position 2 front
+								// 	// the position 2 front
 
-									if Board[TheYposition-2][TheXposition] == " - " {
+								// 	if Board[TheYposition-2][TheXposition] == " - " {
 
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 2, TheXposition}
-									}
+								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 2, TheXposition}
+								// 	}
 
-								} else if TheYposition+to_move == 1 && Board[TheYposition][TheXposition] == " "+N[0]+" " {
-									// the position 2 front
-									if Board[TheYposition+2][TheXposition] == " - " {
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 2, TheXposition}
-									}
+								// } else if TheYposition+to_move == 1 && Board[TheYposition][TheXposition] == " "+N[0]+" " {
+								// 	// the position 2 front
+								// 	if Board[TheYposition+2][TheXposition] == " - " {
+								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 2, TheXposition}
+								// 	}
+								// }
+
+								// // the other movements   the next
+								// //the first move  for the whithe pieces
+								// if Board[TheYposition][TheXposition] == " "+B[0]+" " {
+								// 	// the position  front
+								// 	if Board[TheYposition-1][TheXposition] == " - " {
+
+								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition}
+
+								// 	}
+
+								// 	if TheXposition-1 >= 0 {
+								// 		// left
+								// 		if check(N, Board[TheYposition-1][TheXposition-1]) {
+								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition - 1}
+
+								// 		}
+								// 	}
+
+								// 	if TheXposition+1 <= 8 {
+
+								// 		// right
+								// 		if check(B, Board[TheYposition-1][TheXposition+1]) {
+								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition + 1}
+
+								// 		}
+
+								// 	}
+
+								// 	// this is for the black pieces
+								// } else if Board[TheYposition][TheXposition] == " "+N[0]+" " {
+								// 	// the position front
+								// 	if Board[TheYposition+1][TheXposition] == " - " {
+								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition}
+								// 	}
+
+								// 	if TheXposition-1 >= 0 {
+								// 		// rigth
+								// 		if check(B, Board[TheYposition+1][TheXposition-1]) {
+								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition - 1}
+
+								// 		}
+								// 	}
+
+								// 	if TheXposition+1 <= 8 {
+								// 		// left
+								// 		if check(B, Board[TheYposition+1][TheXposition+1]) {
+								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition + 1}
+
+								// 		}
+
+								// 	}
+
+								// }
+
+								// fmt.Println(allowedMoves)
+								// if len(allowedMoves) == 0 {
+								// 	fmt.Println("La ficha está bloqueda")
+								// } else {
+								// 	break
+								// }
+
+								p := pieces_.Pawn__{TheYposition, TheXposition,N , B, Board , false}
+								p.Pawn_Allowed_Play()
+
+								for i := 0; i < len(pieces_.Pawn_Allowed_Moves__); i++{
+									allowedMoves[len(allowedMoves)+1] = position_let{ pieces_.Pawn_Allowed_Moves__[i+1].This_A,pieces_.Pawn_Allowed_Moves__[i + 1].This_B}
 								}
-
-								// the other movements   the next
-								//the first move  for the whithe pieces
-								if Board[TheYposition][TheXposition] == " "+B[0]+" " {
-									// the position  front
-									if Board[TheYposition-1][TheXposition] == " - " {
-
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition}
-
-									}
-
-									if TheXposition-1 >= 0 {
-										// left
-										if check(N, Board[TheYposition-1][TheXposition-1]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition - 1}
-
-										}
-									}
-
-									if TheXposition+1 <= 8 {
-
-										// right
-										if check(B, Board[TheYposition-1][TheXposition+1]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition + 1}
-
-										}
-
-									}
-
-									// this is for the black pieces
-								} else if Board[TheYposition][TheXposition] == " "+N[0]+" " {
-									// the position front
-									if Board[TheYposition+1][TheXposition] == " - " {
-										allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition}
-									}
-
-									if TheXposition-1 >= 0 {
-										// rigth
-										if check(B, Board[TheYposition+1][TheXposition-1]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition - 1}
-
-										}
-									}
-
-									if TheXposition+1 <= 8 {
-										// left
-										if check(B, Board[TheYposition+1][TheXposition+1]) {
-											allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition + 1}
-
-										}
-
-									}
-
-								}
-
 								fmt.Println(allowedMoves)
 								if len(allowedMoves) == 0 {
 									fmt.Println("La ficha está bloqueda")
 								} else {
 									break
 								}
+
 
 							}
 
