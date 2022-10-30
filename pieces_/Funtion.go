@@ -47,3 +47,12 @@ func check__EdgeNumber(Only_Y [8] int, Only_X [8] int,value_Y int ,value_X int )
 	return XD1 && XD2
 
 }
+
+func check__If_Bouns_out( Y int, X int   ) bool{
+
+	A := false
+	if  Y  - 1 >= 0 && Y + 1 <= 7 &&  X  - 1 >= 1 &&  X  + 1 <= 8 {
+		A = true
+	}
+	return A
+}

@@ -1,147 +1,98 @@
 package pieces_
 
-import (
-	"fmt"
+var(
+
+	Roock_allovedMoves_ = map[int]Contructor{}
 )
 
-var (
-	Rook_allowedMoves_Rook_play = map[int]mapp{}
-)
-
-type mapp struct {
-	ASSS int
-	BSSS int
-}
 
 type Rook_ struct {
-	X_Rook_      int
-	Y_Rook_      int
-	Black_pieces [6]string
-	White_pieces [6]string
 
-	The_Board_Rook [9][9]string
+	Y_ int
+	X_ int
+
+	Black_pieces___[6] string
+	White_pieces___[6] string
+
+	The_Board_Roock [9][9] string
+
 }
 
-func (v *Rook_) Rook_allowedMovesRook() {
+func (a * Rook_ ) Roock_allovedMoves_Play(){
 
-	fmt.Println(v.The_Board_Rook[v.Y_Rook_][v.X_Rook_])
+	if checker_Bishop(a.White_pieces___ ,a.The_Board_Roock[a.Y_][a.X_]){
 
-	//this is for up moves
+		// up 
+		checher_Roock_Moves(a.Y_ , a.X_ , -1 , 0, a.The_Board_Roock, a.Black_pieces___)
+		//this is left 
+		checher_Roock_Moves(a.Y_ , a.X_ , 0 , -1, a.The_Board_Roock, a.Black_pieces___)
+		// this is for righ
+		checher_Roock_Moves(a.Y_ , a.X_  , 0 , +1,  a.The_Board_Roock,a.Black_pieces___)
+		// dowm
+		checher_Roock_Moves(a.Y_ , a.X_  , +1, 0 ,  a.The_Board_Roock,a.Black_pieces___)
+  
 
-	iterator := 1
-	for {
-
-		if v.Y_Rook_-iterator >= 0 {
-			if v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_] == " - "  || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_]) == true{
-				
-				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_-iterator , v.X_Rook_ }
-				
-				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_-iterator][v.X_Rook_]) == true {
-					break
-				}
-
-			}  else {
-				break
-			}
-
-		}else {
-			break
-		}
-
-		iterator++
+	}	else{
+		
+		 // this is UP right
+		 checher_Roock_Moves(a.Y_ , a.X_ , +1, 0 ,  a.The_Board_Roock, a.White_pieces___)
+		 //this is UP left
+		 checher_Roock_Moves(a.Y_ , a.X_  , 0, -1, a.The_Board_Roock,a.White_pieces___ )
+		 // this is for the Down left
+		 checher_Roock_Moves(a.Y_ , a.X_ , 0 , +1,  a.The_Board_Roock ,a.White_pieces___)
+		 // this is for the  Down right
+		 checher_Roock_Moves(a.Y_ , a.X_  , -1, 0, a.The_Board_Roock , a.White_pieces___)
+	  
 	}
-
-	// the right
-	iterator1 := 1
-	for {
-		if v.X_Rook_+iterator1 <= 8 {
-			if v.The_Board_Rook[v.Y_Rook_][v.X_Rook_+iterator1] == " - " || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_][v.X_Rook_+iterator1]) == true {
-
-				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_, v.X_Rook_ + iterator1}
-				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_][v.X_Rook_+iterator1]) == true {
-					break
-				}
-
-			} else {
-				break
-			}
-
-		}else {
-			break
-		}
-		iterator1++
-	}
-
-	// the lefht
-	iterator2 := 1
-	for {
-		if v.Y_Rook_-iterator2 >= 0 {
-			if v.The_Board_Rook[v.Y_Rook_][v.X_Rook_-iterator2] == " - " || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_][v.X_Rook_-iterator2]) == true {
-
-				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_, v.X_Rook_ - iterator2}
-				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_][v.X_Rook_-iterator2]) == true {
-					break
-				}
-
-			} else {
-				break
-			}
-
-		}else {
-			break
-		}
-
-		iterator2++
-	}
-
-	// down
-	iterator3 := 1
-	for {
-		if v.Y_Rook_+iterator3 <= 8 {
-			if v.The_Board_Rook[v.Y_Rook_+iterator3][v.X_Rook_] == " - " || check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_+iterator3][v.X_Rook_]) == true {
-
-				Rook_allowedMoves_Rook_play[len(Rook_allowedMoves_Rook_play)+1] = mapp{v.Y_Rook_ + iterator3, v.X_Rook_}
-				if check(v.Black_pieces, v.The_Board_Rook[v.Y_Rook_ + iterator3][v.X_Rook_]) == true {
-					break
-				}
-			} else {
-				break
-			}
-
-		}else {
-			break
-		}
-
-		iterator3++
-	}
-
-	
-
 }
 
 // Function to calculate the color of the pice to eat
-func check(A [6]string, B string) bool {
+func checker_Roock(Piece_Color [6]string, Color_Position string) bool {
 
 	xddd := false
-	for i := 0; i < len(A); i++ {
-		if  " " + A[i] + " " ==   B  {
+	for i := 0; i < len(Piece_Color); i++ {
+		if  " " + Piece_Color[i] + " " ==   Color_Position  {
 			xddd = true
-			
-			
 		}
 
 	}
 	return xddd
 }
+func checher_Roock_Moves(Y_BYY int , X_BYY int, MoveA int , MoveB int ,Board_ [9][9] string, TheColor_ [6] string)  {
+ 
+    
+    iter_1 := MoveA
+    iter_2 := MoveB
 
-func (v *Rook_) Running() {
+    for{
+      // for the bouns out of range
+    //   if  Y_BYY + iter_1 >= 0 && Y_BYY + iter_1 <=  7 && X_BYY +  iter_2 <= 0 &&  X_BYY + iter_2 <= 8{
+    //    break 
+    //   }
+	if  Y_BYY + iter_1 <0 || Y_BYY + iter_1 >  8 || X_BYY +  iter_2 < 0 &&  X_BYY + iter_2 > 8 {
+		break 
+	   }
 
-	fmt.Println("The Rook is running in ", v.X_Rook_, v.Y_Rook_)
+      if Board_[Y_BYY + iter_1][X_BYY + iter_2] == " - " || checker_Bishop(TheColor_,Board_[Y_BYY + iter_1][X_BYY + iter_2]){
+        Bishop_allowedMoves_[len(Bishop_allowedMoves_)+1] = Contructor{Y_BYY + iter_1 , X_BYY + iter_2 }
+      
+      } else {
+          break
+      }
 
-}
+      // this is for increase of the move 
+      if MoveA == 1 {
+        iter_1 ++
+      } else{
+        iter_1 --
 
-func Hello() {
-
-	fmt.Println("Welcome to my game")
-
+      }
+  
+      if MoveB == 1{
+        iter_2 ++
+      } else {
+        iter_2 --
+      }
+    }
+   
 }

@@ -29,7 +29,7 @@ var (
 		{" 7 ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " "},
 		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 4 ", " - ", " - ", " - ", " - "," " + B[0] + " ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " "},
 		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
@@ -67,8 +67,6 @@ func check(A [6]string, B string) bool {
 }
 
 func main() {
-
-	pieces_.Hello()
 
 	fmt.Print("What is Your Color ->  W or B -> ")
 	var second string
@@ -116,9 +114,11 @@ func main() {
 
 				// this is for become String to a int
 				val, err := strconv.Atoi(v[1])
+
+				
 				if err != nil {
 
-				} else {
+				}  else {
 
 					if val > 0 && val <= 9 {
 
@@ -141,114 +141,17 @@ func main() {
 							TheXposition = Change_letters_numbers[v[0]]
 							TheYposition = Change_numbers_numbers[v[1]]
 
-							// algoritmoXDDDD := The_pawn1{TheXposition,TheYposition,B,N,Board}
-							// algoritmoXDDDD.Allowed_moves()
-
-							// if len(ReturnValues()) == 0{
-							// 	fmt.Println("La ficha está bloqueda")
-							// }	else{
-							// 	break
-							// }
-
-							//--------------------------------------------------------------------------------------------------------------------------
-
-							// // if the pice position is white
-							// if Board[TheYposition][TheXposition] == B[0] {
-							// 	// piecesToatac = N
-							// 	to_move = -1
-							// }
-							// // if the pice position is black
-							// if Board[TheYposition][TheXposition] == N[0] {
-							// 	// piecesToatac = B
-
-							// 	to_move = 1
-
-							// }
-
 							// this is for the pawn
 							////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 							if Board[TheYposition][TheXposition] == " "+B[0]+" " || Board[TheYposition][TheXposition] == " "+N[0]+" " {
+								// ---------------------------------------------------
+								for k := range allowedMoves {
+									delete(allowedMoves, k)
+								}
+								// ---------------------------------------------------
+
 
 								fmt.Println(Board[TheYposition][TheXposition])
-
-								// //the first move
-								// fmt.Println(TheYposition + to_move)
-								// if TheYposition+to_move == 6 && Board[TheYposition][TheXposition] == " "+B[0]+" " {
-
-								// 	// the position 2 front
-
-								// 	if Board[TheYposition-2][TheXposition] == " - " {
-
-								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 2, TheXposition}
-								// 	}
-
-								// } else if TheYposition+to_move == 1 && Board[TheYposition][TheXposition] == " "+N[0]+" " {
-								// 	// the position 2 front
-								// 	if Board[TheYposition+2][TheXposition] == " - " {
-								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 2, TheXposition}
-								// 	}
-								// }
-
-								// // the other movements   the next
-								// //the first move  for the whithe pieces
-								// if Board[TheYposition][TheXposition] == " "+B[0]+" " {
-								// 	// the position  front
-								// 	if Board[TheYposition-1][TheXposition] == " - " {
-
-								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition}
-
-								// 	}
-
-								// 	if TheXposition-1 >= 0 {
-								// 		// left
-								// 		if check(N, Board[TheYposition-1][TheXposition-1]) {
-								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition - 1}
-
-								// 		}
-								// 	}
-
-								// 	if TheXposition+1 <= 8 {
-
-								// 		// right
-								// 		if check(B, Board[TheYposition-1][TheXposition+1]) {
-								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition - 1, TheXposition + 1}
-
-								// 		}
-
-								// 	}
-
-								// 	// this is for the black pieces
-								// } else if Board[TheYposition][TheXposition] == " "+N[0]+" " {
-								// 	// the position front
-								// 	if Board[TheYposition+1][TheXposition] == " - " {
-								// 		allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition}
-								// 	}
-
-								// 	if TheXposition-1 >= 0 {
-								// 		// rigth
-								// 		if check(B, Board[TheYposition+1][TheXposition-1]) {
-								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition - 1}
-
-								// 		}
-								// 	}
-
-								// 	if TheXposition+1 <= 8 {
-								// 		// left
-								// 		if check(B, Board[TheYposition+1][TheXposition+1]) {
-								// 			allowedMoves[len(allowedMoves)+1] = position_let{TheYposition + 1, TheXposition + 1}
-
-								// 		}
-
-								// 	}
-
-								// }
-
-								// fmt.Println(allowedMoves)
-								// if len(allowedMoves) == 0 {
-								// 	fmt.Println("La ficha está bloqueda")
-								// } else {
-								// 	break
-								// }
 
 								p := pieces_.Pawn__{TheYposition, TheXposition,N , B, Board , false}
 								p.Pawn_Allowed_Play()
@@ -270,11 +173,11 @@ func main() {
 							if Board[TheYposition][TheXposition] == " "+B[1]+" " || Board[TheYposition][TheXposition] == " "+N[1]+" " {
 
 								a := pieces_.Rook_{TheXposition, TheYposition, N, B, Board}
-								a.Rook_allowedMovesRook()
-								a.Running()
+								a.Roock_allovedMoves_Play()
+							
 
-								for i := 0; i < len(pieces_.Rook_allowedMoves_Rook_play); i++ {
-									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Rook_allowedMoves_Rook_play[i+1].ASSS, pieces_.Rook_allowedMoves_Rook_play[i+1].BSSS}
+								for i := 0; i < len(pieces_.Roock_allovedMoves_); i++ {
+									allowedMoves[len(allowedMoves)+1] = position_let{pieces_.Roock_allovedMoves_[i+1].This_A, pieces_.Roock_allovedMoves_[i+1].This_B}
 								}
 
 								fmt.Println(allowedMoves)
