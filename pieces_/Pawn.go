@@ -31,9 +31,9 @@ func (P *Pawn__) Pawn_Allowed_Play() {
 			Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ - 2, P.X__}
 		}
 
-		if P.Board__[P.Y__-1][P.X__] == " - "{
+		if P.Board__[P.Y__-1][P.X__] == " - " {
 
-			fmt.Println( check__If_Bouns_out(P.Y__-1, P.X__)  )
+			fmt.Println(check__If_Bouns_out(P.Y__-1, P.X__))
 			Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ - 1, P.X__}
 		}
 		if checker(P.Black__, P.Board__[P.Y__-1][P.X__-1]) && check__If_Bouns_out(P.Y__-1, P.X__-1) {
@@ -72,13 +72,16 @@ func (P *Pawn__) Pawn_Allowed_Play() {
 			Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ + 1, P.X__}
 		}
 
-		if checker(P.Black__, P.Board__[P.Y__+1][P.X__+1]) && check__If_Bouns_out(P.Y__+1, P.X__+1) {
+		if checker(P.Black__, P.Board__[P.Y__][P.X__]) {
 
-			if theKey__ == true {
-				Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ + 1, P.X__ + 1}
+			if check__If_Bouns_out(P.Y__+1, P.X__+1) {
+				if theKey__ == true {
+					Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ + 1, P.X__ + 1}
 
-			} else {
-				Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ + 1, P.X__ + 1}
+				} else {
+					Pawn_Allowed_Moves__[len(Pawn_Allowed_Moves__)+1] = Contructor{P.Y__ + 1, P.X__ + 1}
+				}
+
 			}
 
 		}
