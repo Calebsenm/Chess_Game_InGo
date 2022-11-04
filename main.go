@@ -75,20 +75,25 @@ func main() {
 	it := 0
 	for {
 
+	
+	
 		cmd := exec.Command("cmd", "/c", "cls")
 		cmd.Stdout = os.Stdout
 		cmd.Run()
+
+	
 
 		if second == "b" {
 			for i := 8; i > -1; i-- {
 				for j := 8; j > -1; j-- {
 
 					fmt.Print(Board[i][j])
+					it++
 				}
 				fmt.Println()
 			}
 
-		} else {
+		} else if second == "w" {
 
 			for i := 0; i < 9; i++ {
 				for j := 0; j < 9; j++ {
@@ -100,11 +105,13 @@ func main() {
 		}
 
 		if it%2 == 0 {
-			logic_moves(true) 
+			logic_moves(true , B , N  ) 
+			second = "b"
 		}
 
 		if it%2 == 1 {
-			logic_moves( true )
+			logic_moves( true, N, B )
+			second = "w"
 
 		}
 
@@ -113,7 +120,10 @@ func main() {
 
 }
 
-func logic_moves(keyColor bool ) {
+
+
+
+func logic_moves(keyColor bool , ColorPiece , ColorPieceOpposite [6] string) {
 	var position1 string
 	var position2 string
 
@@ -155,7 +165,7 @@ func logic_moves(keyColor bool ) {
 
 					// this is for the pawn
 					////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					if Board[TheYposition][TheXposition] == " "+B[0]+" " || Board[TheYposition][TheXposition] == " "+N[0]+" " {
+					if Board[TheYposition][TheXposition] == " "+B[0]+" " || Board[TheYposition][TheXposition] == " "+ N[0]+" " {
 						// ---------------------------------------------------
 						for k := range allowedMoves {
 							delete(allowedMoves, k)
@@ -164,7 +174,7 @@ func logic_moves(keyColor bool ) {
 
 						fmt.Println(Board[TheYposition][TheXposition])
 
-						p := pieces_.Pawn__{TheYposition, TheXposition, N, B, Board, false}
+						p := pieces_.Pawn__{TheYposition, TheXposition , ColorPieceOpposite, ColorPiece , Board, false}
 						p.Pawn_Allowed_Play()
 
 						for i := 0; i < len(pieces_.Pawn_Allowed_Moves__); i++ {
@@ -182,7 +192,7 @@ func logic_moves(keyColor bool ) {
 					//this is for the Rook
 					if Board[TheYposition][TheXposition] == " "+B[1]+" " || Board[TheYposition][TheXposition] == " "+N[1]+" " {
 
-						a := pieces_.Rook_{TheXposition, TheYposition, N, B, Board}
+						a := pieces_.Rook_{TheXposition, TheYposition , ColorPieceOpposite, ColorPiece , Board}
 						a.Roock_allovedMoves_Play()
 
 						for i := 0; i < len(pieces_.Roock_allovedMoves_); i++ {
@@ -201,7 +211,7 @@ func logic_moves(keyColor bool ) {
 					// this is for the Queen
 					if Board[TheYposition][TheXposition] == " "+B[2]+" " || Board[TheYposition][TheXposition] == " "+N[2]+" " {
 
-						b := pieces_.Queen_{TheYposition, TheXposition, N, B, Board}
+						b := pieces_.Queen_{TheYposition, TheXposition,ColorPieceOpposite, ColorPiece , Board}
 						b.Queen_allowedMoves_Queen_play()
 
 						for i := 0; i < len(pieces_.Queen_allowedMoves_Queen___); i++ {
@@ -221,7 +231,7 @@ func logic_moves(keyColor bool ) {
 
 					if Board[TheYposition][TheXposition] == " "+B[5]+" " || Board[TheYposition][TheXposition] == " "+N[5]+" " {
 
-						bbbbb := pieces_.Bishop_{TheYposition, TheXposition, N, B, Board}
+						bbbbb := pieces_.Bishop_{TheYposition, TheXposition, ColorPieceOpposite, ColorPiece , Board}
 						bbbbb.Bishop_AllowedMoves_bishop_ToPLay()
 
 						for i := 0; i < len(pieces_.Bishop_allowedMoves_); i++ {
@@ -239,7 +249,7 @@ func logic_moves(keyColor bool ) {
 					//this is for the Knight
 					if Board[TheYposition][TheXposition] == " "+B[3]+" " || Board[TheYposition][TheXposition] == " "+N[3]+" " {
 
-						XU := pieces_.Knight_{TheYposition, TheXposition, N, B, Board}
+						XU := pieces_.Knight_{TheYposition, TheXposition,ColorPieceOpposite, ColorPiece , Board}
 						XU.Knight_Allowed_Play()
 
 						for i := 0; i < len(pieces_.Knight_allowedMoves__); i++ {
@@ -260,7 +270,10 @@ func logic_moves(keyColor bool ) {
 
 				}
 
-			}
+			}	
+
+
+			
 		}
 
 	}
