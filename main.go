@@ -44,7 +44,7 @@ type positions struct {
 	A, B int
 }
 
-//funtion for printBoard
+// funtion for printBoard
 func printBoard(lastChoise int) {
 
 	if lastChoise == 2 {
@@ -156,43 +156,31 @@ func main() {
 		printBoard(choice)
 		fmt.Println("-------------------------------------------------------")
 
-		if choice == 1{
+		if choice == 1 {
 			colorContrario = N
-		}	else{
+		} else if choice == 2 {
 			colorContrario = B
 		}
 
-		if iterator % 2 == 0 {
-			fmt.Println(colorContrario)
+		if iterator%2 == 0 {
 			Y, X := logicChoises("1")
 			fmt.Println(Y, X)
-		
-
-		
-			colorActual1 := [6]string{}
 
 			for {
-
-				if Board[Y][X] == B[0] || Board[Y][X] == B[1] || Board[Y][X] == B[2] || Board[Y][X] == B[3] || Board[Y][X] == B[4] || Board[Y][X] == B[5]  {
-					colorActual1 = B
-				}  else {
-					colorActual1 = N
-			
-				}
-
+				 
 				fmt.Println(colorContrario)
-				fmt.Println(colorActual1)
-
-
-				if colorContrario != colorActual1{
-					fmt.Println("Error color incorrecto")
+				fmt.Println("Has Entrado 1 " + Board[Y][X] )
+				if Board[Y][X] == " - "{
+					fmt.Println("Has elegido un movimiento no permitido")
 					Y, X = logicChoises("1")
-				}	else{
-						break
+					break
 				}
-
-				
-
+				if Board[Y][X] == colorContrario[0] || Board[Y][X] == colorContrario[1] || Board[Y][X] == colorContrario[2] || Board[Y][X] == colorContrario[3] || Board[Y][X] == colorContrario[4] || Board[Y][X] == colorContrario[5] {
+					fmt.Println("Has elegido un movimiento no permitido")
+					Y, X = logicChoises("1")
+				} else {
+					break
+				}
 			}
 
 			if choice == 1 {
@@ -200,35 +188,27 @@ func main() {
 			} else {
 				choice = 1
 			}
-			
-			llamarMovimientosLogicos("Loro con sal ")
-		} else {
 
-			fmt.Println(colorContrario)
+			llamarMovimientosLogicos("Yes ")
+		} else {
 			Y, X := logicChoises("2")
 			fmt.Println(Y, X)
-		
 
-
-			colorActual2 := [6]string{}
 			for {
-
-				if Board[Y][X] == N[0] || Board[Y][X] == N[1] || Board[Y][X] == N[2] || Board[Y][X] == N[3] || Board[Y][X] == N[4] || Board[Y][X] == N[5]  {
-					colorActual2 = N
-				
-				}  else {
-					colorActual2 = B
-			
-				}
-
 				fmt.Println(colorContrario)
-				fmt.Println(colorActual2)
+				fmt.Println("Has Entrado 2 " + Board[Y][X] )
+				if Board[Y][X] == " - "{
 
-				if colorContrario != colorActual2{
-					fmt.Println("Error color incorrecto")
+					fmt.Println("Has elegido un movimiento no permitido")
 					Y, X = logicChoises("2")
-				}	else{
-						break
+					
+
+				}
+				if Board[Y][X] == colorContrario[0] || Board[Y][X] == colorContrario[1] || Board[Y][X] == colorContrario[2] || Board[Y][X] == colorContrario[3] || Board[Y][X] == colorContrario[4] || Board[Y][X] == colorContrario[5] {
+					fmt.Println("Has elegido un movimiento no permitido")
+					Y, X = logicChoises("2")
+				} else {
+					break
 				}
 			}
 
@@ -238,7 +218,7 @@ func main() {
 				choice = 2
 			}
 
-			llamarMovimientosLogicos("Loro con sal ")
+			llamarMovimientosLogicos("Yes ")
 		}
 
 	}
