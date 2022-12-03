@@ -8,6 +8,7 @@
 package main
 
 import (
+	"chess/Pieces"
 	"fmt"
 	"strconv"
 	"strings"
@@ -162,7 +163,7 @@ func main() {
 		if iterator%2 == 0 {
 			Y, X := logicChoises("1")
 			for {
-				if Board[Y][X] == " - " || " "+Board[Y][X]+" " == colorContrario[0] || " "+Board[Y][X]+" " == colorContrario[1] || " "+Board[Y][X]+" " == colorContrario[2] || " "+Board[Y][X]+" "  == colorContrario[3] || " "+Board[Y][X]+" " == colorContrario[4] || " "+Board[Y][X]+" " == colorContrario[5] {
+				if Board[Y][X] == " - " || Board[Y][X]  == " " + colorContrario[0] +" "|| Board[Y][X] == " " + colorContrario[1] + " " || Board[Y][X] == " "+ colorContrario[2] + " "|| Board[Y][X] == " " + colorContrario[3] +" "|| Board[Y][X] == " " + colorContrario[4] +" "|| Board[Y][X] == " " + colorContrario[5] +" "{
 					fmt.Println("Has elegido un movimiento no permitido")
 					Y, X = logicChoises("1")
 				} else {
@@ -175,12 +176,12 @@ func main() {
 				choice = 1
 			}
 
-			llamarMovimientosLogicos("Yes ")
+			llamarMovimientosLogicos("Yes ",colorContrario)
 		} else {
 			Y, X := logicChoises("2")
 			fmt.Println(Y, X)
 			for {
-				if Board[Y][X] == " - " || Board[Y][X] == colorContrario[0] || Board[Y][X] == colorContrario[1] || Board[Y][X] == colorContrario[2] || Board[Y][X] == colorContrario[3] || Board[Y][X] == colorContrario[4] || Board[Y][X] == colorContrario[5] {
+				if Board[Y][X] == " - " ||  Board[Y][X] == " "+ colorContrario[0] + " "  ||Board[Y][X] == " "+ colorContrario[1] +" " ||  Board[Y][X] == " " + colorContrario[2]+ " "  ||  Board[Y][X] == " "+ colorContrario[3] +" " ||  Board[Y][X] == " "+ colorContrario[4]+" " ||  Board[Y][X] == " "+ colorContrario[5] + " "{
 					fmt.Println("Has elegido un movimiento no permitido")
 					Y, X = logicChoises("2")
 				} else {
@@ -193,7 +194,7 @@ func main() {
 			} else {
 				choice = 2
 			}
-			llamarMovimientosLogicos("Yes ")
+			llamarMovimientosLogicos("Yes ",colorContrario)
 		}
 
 	}
@@ -202,7 +203,14 @@ func main() {
 
 // this is for calls the moves to other pieces
 
-func llamarMovimientosLogicos(loro string) {
+func llamarMovimientosLogicos(loro string ,color[6] string  ) {
 
 	fmt.Println("Movimiento permitido " + loro)
+
+	v1 := Pieces.Pawm_{1,3,Board,color}
+	v2 := Pieces.Bishops_{2,1,Board,color}
+
+	a := v1.MovesCalculate()
+	b := v2.MovesCalculate()
+	fmt.Println(a,"\n",b)
 }
