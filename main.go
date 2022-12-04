@@ -69,13 +69,13 @@ func printBoard(lastChoise int) {
 }
 
 // this funtion going return the coordinates x y
-func logicChoises(player_name string) (int, int) {
+func logicChoises(player_name , option string) (int, int) {
 
 	values := [2]int{}
 	for {
 		var position1 string
 
-		fmt.Print("Jugador " + player_name + " Please enter the position > ")
+		fmt.Print("Jugador " + player_name +option +" > ")
 		fmt.Scanln(&position1)
 
 		if len(position1) == 2 {
@@ -161,11 +161,11 @@ func main() {
 		}
 
 		if iterator%2 == 0 {
-			Y, X := logicChoises("1")
+			Y, X := logicChoises("1 ","Escoge una posicion")
 			for {
 				if Board[Y][X] == " - " || Board[Y][X]  == " " + colorContrario[0] +" "|| Board[Y][X] == " " + colorContrario[1] + " " || Board[Y][X] == " "+ colorContrario[2] + " "|| Board[Y][X] == " " + colorContrario[3] +" "|| Board[Y][X] == " " + colorContrario[4] +" "|| Board[Y][X] == " " + colorContrario[5] +" "{
 					fmt.Println("Has elegido un movimiento no permitido")
-					Y, X = logicChoises("1")
+					Y, X = logicChoises("1 ","Escoge una posicion")
 				} else {
 					break
 				}
@@ -176,14 +176,16 @@ func main() {
 				choice = 1
 			}
 
-			llamarMovimientosLogicos("Yes ",colorContrario)
+			llamarMovimientosLogicos(Y,X,"Yes ",colorContrario)
+			
+
 		} else {
-			Y, X := logicChoises("2")
+			Y, X := logicChoises("2"," Escoge una posicion")
 			fmt.Println(Y, X)
 			for {
 				if Board[Y][X] == " - " ||  Board[Y][X] == " "+ colorContrario[0] + " "  ||Board[Y][X] == " "+ colorContrario[1] +" " ||  Board[Y][X] == " " + colorContrario[2]+ " "  ||  Board[Y][X] == " "+ colorContrario[3] +" " ||  Board[Y][X] == " "+ colorContrario[4]+" " ||  Board[Y][X] == " "+ colorContrario[5] + " "{
 					fmt.Println("Has elegido un movimiento no permitido")
-					Y, X = logicChoises("2")
+					Y, X = logicChoises("2"," Escoge una posicion")
 				} else {
 					break
 				}
@@ -194,7 +196,7 @@ func main() {
 			} else {
 				choice = 2
 			}
-			llamarMovimientosLogicos("Yes ",colorContrario)
+			llamarMovimientosLogicos(Y, X,"Yes ",colorContrario)
 		}
 
 	}
@@ -203,14 +205,31 @@ func main() {
 
 // this is for calls the moves to other pieces
 
-func llamarMovimientosLogicos(loro string ,color[6] string  ) {
+func llamarMovimientosLogicos(y int , x int , loro string ,color[6] string  ) {
 
 	fmt.Println("Movimiento permitido " + loro)
+	fmt.Println(Board[y][x])
+	
+	if Board[y][x] == " " + B[0] + " "  ||  Board[y][x] == " " + N[0] + " " {
+		v1 := Pieces.Pawm_{1,3,Board,color}
+		a := v1.MovesCalculate()
 
-	v1 := Pieces.Pawm_{1,3,Board,color}
-	v2 := Pieces.Bishops_{2,1,Board,color}
+		Y, X := logicChoises(""," Donde deseas moverte")
+		
+		io := 0 
+		for {
+			if a[io][0] == Y &&  a[io][0] == X {
+				Board[Y][X] = Board[x][y] 
+				Board[y][x] = " - "
+			}	else{
+				Y, X = logicChoises(""," Donde deseas moverte")
+			}
 
-	a := v1.MovesCalculate()
-	b := v2.MovesCalculate()
-	fmt.Println(a,"\n",b)
+			io++
+		}
+
+	}
+
+	
+
 }
