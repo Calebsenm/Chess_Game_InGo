@@ -1,5 +1,7 @@
 package Pieces
 
+import "fmt"
+
 var(
 	N = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	B = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
@@ -21,8 +23,15 @@ func movesPawm(y int , x int , board [9][9]string ) [][]int{
 	
 	let_moves := [][] int{}
 	
+
+	
 	// chek color is white or black
-	if colorChecker(board[y][x],B){
+	fmt.Println(colorChecker(board[y][x],B))
+	fmt.Println(board[y][x] )
+	fmt.Println(B)
+
+
+	if colorChecker(board[y][x] , B ){
 		if y == 6 && board[y -1][x] == " - " && board[y -2][x] == " - "{
 
 			let_moves = append (let_moves,[]int{y - 1 , x})

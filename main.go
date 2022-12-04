@@ -24,7 +24,7 @@ var (
 		{" 7 ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " "},
 		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 4 ", " - ", " - ", " - ", " - ", " " + " " + " ", " - ", " - ", " - "},
+		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " "},
 		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
@@ -207,29 +207,17 @@ func main() {
 
 func llamarMovimientosLogicos(y int , x int , loro string ,color[6] string  ) {
 
-	fmt.Println("Movimiento permitido " + loro)
-	fmt.Println(Board[y][x])
-	
 	if Board[y][x] == " " + B[0] + " "  ||  Board[y][x] == " " + N[0] + " " {
-		v1 := Pieces.Pawm_{1,3,Board,color}
+		fmt.Println("Movimiento permitido " + loro)
+		fmt.Println(Board[y][x])
+		
+		v1 := Pieces.Pawm_{y,x,Board,color}
 		a := v1.MovesCalculate()
 
+		fmt.Println(a)
 		Y, X := logicChoises(""," Donde deseas moverte")
+		fmt.Println(Y,X)
 		
-		io := 0 
-		for {
-			if a[io][0] == Y &&  a[io][0] == X {
-				Board[Y][X] = Board[x][y] 
-				Board[y][x] = " - "
-			}	else{
-				Y, X = logicChoises(""," Donde deseas moverte")
-			}
-
-			io++
-		}
-
 	}
-
-	
-
 }
+
