@@ -69,13 +69,13 @@ func printBoard(lastChoise int) {
 }
 
 // this funtion going return the coordinates x y
-func logicChoises(player_name , option string) (int, int) {
+func logicChoises(player_name, option string) (int, int) {
 
 	values := [2]int{}
 	for {
 		var position1 string
 
-		fmt.Print("Jugador " + player_name +option +" > ")
+		fmt.Print("Jugador " + player_name + option + " > ")
 		fmt.Scanln(&position1)
 
 		if len(position1) == 2 {
@@ -161,42 +161,22 @@ func main() {
 		}
 
 		if iterator%2 == 0 {
-			Y, X := logicChoises("1 ","Escoge una posicion")
-			for {
-				if Board[Y][X] == " - " || Board[Y][X]  == " " + colorContrario[0] +" "|| Board[Y][X] == " " + colorContrario[1] + " " || Board[Y][X] == " "+ colorContrario[2] + " "|| Board[Y][X] == " " + colorContrario[3] +" "|| Board[Y][X] == " " + colorContrario[4] +" "|| Board[Y][X] == " " + colorContrario[5] +" "{
-					fmt.Println("Has elegido un movimiento no permitido")
-					Y, X = logicChoises("1 ","Escoge una posicion")
-				} else {
-					break
-				}
-			}
+
 			if choice == 1 {
 				choice = 2
 			} else {
 				choice = 1
 			}
 
-			llamarMovimientosLogicos(Y,X,"Yes ",colorContrario)
-			
+			llamarMovimientosLogicos("1", colorContrario)
 
 		} else {
-			Y, X := logicChoises("2"," Escoge una posicion")
-			fmt.Println(Y, X)
-			for {
-				if Board[Y][X] == " - " ||  Board[Y][X] == " "+ colorContrario[0] + " "  ||Board[Y][X] == " "+ colorContrario[1] +" " ||  Board[Y][X] == " " + colorContrario[2]+ " "  ||  Board[Y][X] == " "+ colorContrario[3] +" " ||  Board[Y][X] == " "+ colorContrario[4]+" " ||  Board[Y][X] == " "+ colorContrario[5] + " "{
-					fmt.Println("Has elegido un movimiento no permitido")
-					Y, X = logicChoises("2"," Escoge una posicion")
-				} else {
-					break
-				}
-			}
-
 			if choice == 2 {
 				choice = 1
 			} else {
 				choice = 2
 			}
-			llamarMovimientosLogicos(Y, X,"Yes ",colorContrario)
+			llamarMovimientosLogicos("2", colorContrario)
 		}
 
 	}
@@ -205,19 +185,66 @@ func main() {
 
 // this is for calls the moves to other pieces
 
-func llamarMovimientosLogicos(y int , x int , loro string ,color[6] string  ) {
+func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 
-	if Board[y][x] == " " + B[0] + " "  ||  Board[y][x] == " " + N[0] + " " {
-		fmt.Println("Movimiento permitido " + loro)
-		fmt.Println(Board[y][x])
-		
-		v1 := Pieces.Pawm_{y,x,Board,color}
-		a := v1.MovesCalculate()
+	var a [][]int
+	y, x := logicChoises(player, "Escoge una posicion")
+	veri := false
+	
+	ix := 0
+	ix2 := false
 
-		fmt.Println(a)
-		Y, X := logicChoises(""," Donde deseas moverte")
-		fmt.Println(Y,X)
+	for {
+	
+
+		for {
+			if Board[y][x] == " - " || Board[y][x] == " "+colorContrario[0]+" " || Board[y][x] == " "+colorContrario[1]+" " || Board[y][x] == " "+colorContrario[2]+" " || Board[y][x] == " "+colorContrario[3]+" " || Board[y][x] == " "+colorContrario[4]+" " || Board[y][x] == " "+colorContrario[5]+" " {
+				fmt.Println("Has elegido un movimiento no permitido")
+				y, x = logicChoises("1 ", "Escoge una posicion")
+			} else {
+				break
+			}
+		}
+
+		if Board[y][x] == " "+B[0]+" " || Board[y][x] == " "+N[0]+" " {
+			fmt.Println("Movimiento permitido ")
+			fmt.Println(Board[y][x])
+
+			v1 := Pieces.Pawm_{y, x, Board, colorContrario}
+			a = v1.MovesCalculate()
+
+		}
+
+		Y, X := logicChoises("", " Donde deseas moverte")
 		
+
+		if len(a) == 0 {
+			fmt.Println("La ficha està bloqueada")
+
+		} else {
+
+			for i := 0; i < len(a); i++ {
+
+				if a[i][0] == Y && a[i][1] == X {
+					veri = true
+					break
+				}
+			}
+		}
+		if veri == true {
+		
+			Board[Y][x] = Board[y][x]
+			Board[y][x] = " - "
+
+			ix2 = true
+		}
+	
+
+		if ix2 == true{
+			break
+		}
+		ix++
 	}
-}
 
+	
+}
