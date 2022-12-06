@@ -26,7 +26,7 @@ var (
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " "},
+		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " _ ", " " + B[0] + " "},
 		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[4] + " ", " " + B[2] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
@@ -136,6 +136,8 @@ func main() {
 
 	for {
 		fmt.Print("Please input " + "\n 1 for white  pieces \n 2 for black pieces \n -> ")
+		
+		
 		fmt.Scan(&choice)
 
 		if choice == 1 || choice == 2 {
@@ -206,22 +208,32 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			}
 		}
 
+		//Pawm 
 		if Board[y][x] == " "+B[0]+" " || Board[y][x] == " "+N[0]+" " {
-			fmt.Println("Movimiento permitido ")
 			fmt.Println(Board[y][x])
 
-			v1 := Pieces.Pawm_{y, x, Board, colorContrario}
+			v1 := Pieces.Pawm_{y , x , Board, colorContrario}
 			a = v1.MovesCalculate()
 
 		}
+		//Bishops
+		if Board[y][x] == " "+B[5]+" " || Board[y][x] == " "+N[5]+" " {
+			fmt.Println(Board[y][x])
+			v2 := Pieces.Bishops_{y , x , Board , colorContrario} 
+			a = v2.MovesCalculate()
+    
+		}
 
-		Y, X := logicChoises("", " Donde deseas moverte")
 		
 
 		if len(a) == 0 {
-			fmt.Println("La ficha està bloqueada")
+			fmt.Println("La ficha està bloqueada"); 
+			y, x = logicChoises(" - ", "Escoge una posicion -> ")
 
-		} else {
+		} 
+
+		if len(a) != 0{
+			Y, X := logicChoises("", " Donde deseas moverte")
 
 			for i := 0; i < len(a); i++ {
 
@@ -230,20 +242,22 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 					break
 				}
 			}
-		}
-		if veri == true {
+
+			if veri == true {
 		
-			Board[Y][x] = Board[y][x]
-			Board[y][x] = " - "
-
-			ix2 = true
-		}
+				Board[Y][x] = Board[y][x]
+				Board[y][x] = " - "
 	
-
-		if ix2 == true{
-			break
+				ix2 = true
+			}
+		
+	
+			if ix2 == true{
+				break
+			}
+			ix++
 		}
-		ix++
+		
 	}
 
 	

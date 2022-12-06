@@ -1,6 +1,7 @@
 package Pieces
 
 
+
 // this is for check if color is equals
 
 func colorChecker(piece string, color [6] string) bool{
@@ -42,4 +43,20 @@ func checkEdge( y_ , x_ int ) (bool,bool){
 	}
 
 	return key1 , key2
+}
+
+
+//find element in a list
+
+func checkerHacker(aA string , bB [6] string) bool{
+
+	desicion := false
+
+	for i := 0; i < len(bB); i++{
+		if " " +bB[i] + " " ==  aA {
+			desicion = true		
+		}
+	} 
+
+	return desicion
 }
