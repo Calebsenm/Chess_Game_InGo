@@ -14,6 +14,8 @@ import (
 	"strings"
 )
 
+
+
 var (
 	N = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	B = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
@@ -242,6 +244,9 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 					break
 				}
 			}
+
+
+            
 
 			if veri == true {
 		
