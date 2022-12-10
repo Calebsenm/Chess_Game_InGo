@@ -223,9 +223,20 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			fmt.Println(Board[y][x])
 			v2 := Pieces.Bishops_{y , x , Board , colorContrario} 
 			a = v2.MovesCalculate()
-    
+			
 		}
 
+		//Queen
+		if Board[y][x] == " "+B[2]+" " || Board[y][x] == " "+N[2]+" " {
+
+			fmt.Println(Board[y][x])
+			v3 := Pieces.Queen_{y , x , Board , colorContrario}
+
+			a = v3.MovesQueen()
+
+
+    
+		}
 		
 
 		if len(a) == 0 {

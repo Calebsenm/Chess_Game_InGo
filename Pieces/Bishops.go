@@ -56,12 +56,6 @@ func  moves_(a  int , b int , ay int , ax int , aboard [9][9]string){
 
 
 	for {
-
-
-
-
-
-		
 		fmt.Println("Loro")
 
 		verif1 := ay + in1 
@@ -95,9 +89,6 @@ func  moves_(a  int , b int , ay int , ax int , aboard [9][9]string){
 			}
 		}
 
-		
-		
-	
 		if a > 0{
 			in1 ++
 		}
