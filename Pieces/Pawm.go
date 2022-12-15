@@ -12,53 +12,53 @@ type Pawm_ struct {
 	Color  [6]string
 }
 
-func (objet Pawm_) MovesCalculate() [][]int {
+func (objet Pawm_) MovesCalculate() [][2]int {
 
 	mv := movesPawm(objet.Y, objet.X, objet.Board_)
 	return mv
 }
 
-func movesPawm(y int, x int, board [9][9]string) [][]int {
+func movesPawm(y int, x int, board [9][9]string) [][2]int {
 
-	let_moves := [][]int{}
+	let_moves := [][2]int{}
 
 	// chek color is white or black
 
 	if colorChecker(board[y][x], B) {
 		if y == 6 && board[y-1][x] == " - " && board[y-2][x] == " - " {
 
-			let_moves = append(let_moves, []int{y - 1, x})
-			let_moves = append(let_moves, []int{y - 2, x})
+			let_moves = append(let_moves, [2]int{y - 1, x})
+			let_moves = append(let_moves, [2]int{y - 2, x})
 		} else if board[y-1][x] == " - " {
-			let_moves = append(let_moves, []int{y - 1, x})
+			let_moves = append(let_moves, [2]int{y - 1, x})
 		}
 
 		// para almacenar el calulo del ataque derecho
 		_, k2 := checkEdge(y, x)
 
 		if k2 == true && colorChecker(board[y-1][x-1], N) {
-			let_moves = append(let_moves, []int{y - 1, x - 1})
+			let_moves = append(let_moves, [2]int{y - 1, x - 1})
 		}
 		if k2 == true && colorChecker(board[y-1][x+1], N) {
-			let_moves = append(let_moves, []int{y + 1, x - 1})
+			let_moves = append(let_moves, [2]int{y + 1, x - 1})
 		}
 
 		// el calculo de las negras
 	} else {
 		if y == 1 && board[y+1][x] == " - " && board[y+2][x] == " - " {
-			let_moves = append(let_moves, []int{y + 1, x})
-			let_moves = append(let_moves, []int{y + 2, x})
+			let_moves = append(let_moves, [2]int{y + 1, x})
+			let_moves = append(let_moves, [2]int{y + 2, x})
 
 		} else if y == 6 && board[y+1][x] == " - " {
-			let_moves = append(let_moves, []int{y + 1, x})
+			let_moves = append(let_moves, [2]int{y + 1, x})
 		}
 
 		_, k2 := checkEdge(y, x)
 		if k2 == true && colorChecker(board[y+1][x+1], B) {
-			let_moves = append(let_moves, []int{y + 1, x + 1})
+			let_moves = append(let_moves, [2]int{y + 1, x + 1})
 		}
 		if k2 == true && colorChecker(board[y-1][x+1], N) {
-			let_moves = append(let_moves, []int{y - 1, x + 1})
+			let_moves = append(let_moves, [2]int{y - 1, x + 1})
 		}
 
 	}

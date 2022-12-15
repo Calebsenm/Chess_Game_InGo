@@ -6,7 +6,7 @@ import "fmt"
 var(
 	n_ = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	b_ = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
-	let_moves1 = [][]int{}
+	let_moves1 = [][2]int{}
 	Color111 = [6] string {}
 
 
@@ -20,13 +20,13 @@ type Bishops_ struct{
 }
 
 
-func (objet Bishops_) MovesCalculate() [][]int{
+func (objet Bishops_) MovesCalculate() [][2]int{
 	Color111 = objet.Color
 
 	mv := movesBishop(objet.Y_ , objet.X_, objet.Board_)
 	return mv
 }
-func movesBishop(y_ int , x_ int , board [9][9]string ) [][]int{
+func movesBishop(y_ int , x_ int , board [9][9]string ) [][2]int{
 	
 	
 	//let_moves = append (let_moves,[]int{y_,x_})
@@ -83,7 +83,7 @@ func  moves_(a  int , b int , ay int , ax int , aboard [9][9]string){
 		
 		if choser1 == true && choser2 == true{
 			if aboard[ay + in1][ax +in2]  == " - "{ 
-				let_moves1 = append(let_moves1, []int{ay + in1 , ax +in2})
+				let_moves1 = append(let_moves1, [2]int{ay + in1 , ax +in2})
 				fmt.Println(ay + in1 ," ", ax +in2)
 				
 			}
