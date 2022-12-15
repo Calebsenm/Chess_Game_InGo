@@ -82,7 +82,7 @@ func QueenAlgoritmo(yCambio_ int , xCambio_ int ){
 				if ficha(board__[y1_][x1_], b__) {
 					listOfnumbers = append(listOfnumbers, [2]int{y1_, x1_})
 					break
-				}	else if  ficha(board__[y1_][x1_], b__){
+				}	else if  ficha(board__[y1_][x1_], n__){
 					break
 				}
 			}
