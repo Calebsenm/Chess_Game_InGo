@@ -1,12 +1,5 @@
 package Pieces
 
-import (
-
-	"fmt"
-)
-
-
-
 var(
 	n__ = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	b__ = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
@@ -75,7 +68,7 @@ func QueenAlgoritmo(yCambio_ int , xCambio_ int ){
 
 			//para blancas
 			if fichaAtaca(ataqueFicha1) == 1 {
-				fmt.Println(board__[y1_][x1_]," ",y1_," ",x1_)
+				//fmt.Println(board__[y1_][x1_]," ",y1_," ",x1_)
 				if ficha(board__[y1_][x1_], n__) {
 
 					listOfnumbers = append(listOfnumbers, [2]int{y1_, x1_})
@@ -117,10 +110,11 @@ func fichaAtaca(atacaX string) int {
 	var numero int
 
 	for i := 0; i < 6; i++ {
-		if atacaX == b__[i] {
+
+		if atacaX == " " +b__[i] + " "{
 			numero = 1
 			break
-		} else if  atacaX == n__[i]{
+		} else if  atacaX == " " +n__[i] + " "{
 			numero = 2
 			break
 		}
@@ -132,7 +126,7 @@ func fichaAtaca(atacaX string) int {
 // para controlar el ataque ficha contraria
 func ficha(ficha string, list [6]string) bool {
 	for i := 0; i < len(list); i++ {
-		if list[i] == " " + ficha +" "{
+		if " " +list[i] + " " == ficha {
 			return true
 		}
 	}
