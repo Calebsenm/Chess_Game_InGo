@@ -40,6 +40,8 @@ func (Kn *Knight_) MovesKnight() [][2]int {
 	KnightAlgoritmo( 1 , -2)
 	
 
+
+	
 	return listOfNumbersKnight
 }
 
