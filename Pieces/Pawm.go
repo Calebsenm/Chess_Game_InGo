@@ -13,7 +13,7 @@ type Pawm_ struct {
 }
 
 func (objet Pawm_) MovesCalculate() [][2]int {
-
+	
 	mv := movesPawm(objet.Y, objet.X, objet.Board_)
 	return mv
 }

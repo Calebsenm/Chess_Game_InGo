@@ -19,7 +19,10 @@ type Queen_ struct{
 }
 
 func (ob Queen_ ) MovesQueen()  [][2]int {
-	
+	var vacia  [][2]int
+ 	listOfnumbers = vacia
+
+
 	x__ = ob.X_
 	y__ = ob.Y_
 	board__ = ob.Board_

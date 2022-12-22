@@ -9,6 +9,7 @@ package main
 
 import (
 	"chess/Pieces"
+
 	"fmt"
 	"strconv"
 	"strings"
@@ -37,12 +38,12 @@ var (
 
 		{" 8 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 6 ", " - ", " - ", " - ", " " + N[5] + " ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - ", " " + N[1] + " ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 1 ", " - ", " - ", " - ",  " " + B[2] + " ", " - ", " - ", " " + B[5] + " ", " - "},
+		{" 1 ", " - ", " - ", " - ",  " " + B[1] + " ", " - ", " - ", " " + B[5] + " ", " - "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 	Board__ = [9][9]string{
@@ -225,7 +226,8 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 	ix2 := false
 
 	for {
-	
+		
+		
 
 		for {
 			if Board[y][x] == " - " || Board[y][x] == " "+colorContrario[0]+" " || Board[y][x] == " "+colorContrario[1]+" " || Board[y][x] == " "+colorContrario[2]+" " || Board[y][x] == " "+colorContrario[3]+" " || Board[y][x] == " "+colorContrario[4]+" " || Board[y][x] == " "+colorContrario[5]+" " {
@@ -234,6 +236,21 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			} else {
 				break
 			}
+		}
+
+		var vacia  [][2]int
+		a = vacia
+		Board__ = [9][9]string{
+
+			{" 8 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{" 1 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+			{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 		}
 
 		//Pawm 
@@ -261,6 +278,15 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			a = v3.MovesQueen()
 		}
 
+		//Rook
+		if Board[y][x] == " "+B[1]+" " || Board[y][x] == " "+N[1]+" "{
+
+			fmt.Println(Board[y][x])
+			v4 := Pieces.Rook_{ y , x , Board , colorContrario }
+			a = v4.MovesRook()
+		}
+
+
 		for i := 0; i < len(a); i++ {	
 			Board__[a[i][0]][a[i][1] ] = " o "
 		}
@@ -282,15 +308,11 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 		if len(a) != 0{
 			Y, X := logicChoises("", " Donde deseas moverte")
 			for i := 0; i < len(a); i++ {
-
 				if a[i][0] == Y && a[i][1] == X {
 					veri = true
 					break
 				}
 			}
-
-
-            
 
 			if veri == true {
 		
@@ -301,12 +323,14 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			}
 		
 	
+			
 			if ix2 == true{
+
 				break
 			}
 			ix++
 		}
-		
+	
 	}
 
 	

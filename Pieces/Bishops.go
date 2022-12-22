@@ -19,6 +19,8 @@ type Bishops_ struct {
 }
 
 func (bh Bishops_) MovesBishop() [][2]int {
+	var vacia  [][2]int
+	listNumbers_ = vacia
 
 	// this save the variable
 	x_ = bh.X_
