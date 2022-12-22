@@ -1,6 +1,6 @@
-
-
 package Pieces;
+
+import "fmt"
 
 var(
 
@@ -67,21 +67,22 @@ func RookAlgoritmo(yChange , xChange int  ){
 				listOfNumbersRook = append(listOfNumbersRook, [2]int{y111 ,x111} )
 			}	
 
+			fmt.Println(fichaAtaca___( atactPiece ) )
 			if fichaAtaca___( atactPiece ) == 1{
-				if ficha___(board_[y111][x111], n___) {
+				if fichas___(board___[y111][x111], n___) {
 					listOfNumbersRook = append(listOfNumbersRook, [2]int{y111, x111})
 					break
-				} else if ficha___(board_[y111][x111], b___) {
+				} else if fichas___(board___[y111][x111], b___) {
 					break
 
 				}
 
 			}	else if fichaAtaca___(atactPiece) == 2 {
-				if ficha___(board_[y111][x111], b___) {
+				if fichas___(board___[y111][x111], b___) {
 					listOfNumbersRook = append(listOfNumbersRook, [2]int{y111, x111})
 					break
 
-				} else if ficha___(board_[y111][x111], n___) {
+				} else if fichas___(board___[y111][x111], n___) {
 					break
 				}
 			}
@@ -103,16 +104,16 @@ func fueraRango___(y , x int ) bool {
 }
 
 // what pice is fithg
-func fichaAtaca___(atacaX string) int{
+func fichaAtaca___(atacaX___ string) int{
 
 	var num int;
 
 	for i := 0; i < 6; i++ {
-		if atacaX == " " + b___[i] + " "{
+		if atacaX___ == " " + b___[i] + " "{
 			num = 1;
 			break;
 
-		} else if atacaX == " " + n___[i] + " " {
+		} else if atacaX___ == " " + n___[i] + " " {
 			num = 2;
 			break;
 
@@ -123,13 +124,14 @@ func fichaAtaca___(atacaX string) int{
 }
 
 // to control the opponent's chip attack
-func ficha___(ficha string , list[6] string) bool {
+func fichas___(ficha___ string , list___ [6] string) bool {
 	
-	for i := 0; i < len(list); i++ {
-		if " "+list[i]+" " == ficha {
-			return true;
+	for i := 0; i < len(list___); i++ {
+		fmt.Println(" " +list___[i] + " " +" -> "+ ficha___)
+		
+		if " " +list___[i] + " " == ficha___ {
+			return true
 		}
 	}
-	
-	return false;
+	return false
 }
