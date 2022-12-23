@@ -14,8 +14,6 @@ import (
 	"strings"
 )
 
-
-
 var (
 	N = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	B = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
@@ -35,14 +33,14 @@ var (
 
 	Board = [9][9]string{
 
-		{" 1 ", " " + N[1] + " ",  " - ",  " - ",  " - ", " " + N[4] + " ",  " - ",  " - ", " " + N[1] + " "},
-		{" 7 "," - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 6 "," - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 1 ", " " + N[1] + " ", " - ", " - ", " - ", " " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
+		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 1 ", " " + B[1] + " ",  " - ",  " - ",  " - ", " " + B[4] + " ",  " - ",  " - ", " " + B[1] + " "},
+		{" 1 ", " " + B[1] + " ", " - ", " - ", " - ", " " + B[4] + " ", " - ", " - ", " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 	Board__ = [9][9]string{
@@ -58,7 +56,6 @@ var (
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 
-
 	TheYposition int
 	TheXposition int
 
@@ -66,6 +63,9 @@ var (
 	TheYpositionToMove int
 
 	allowedMoves = map[int]positions{}
+
+	movimientosPosiblesBlancos [][]int
+	movimientosPosiblesNegros  [][]int
 )
 
 // this is the strct for the moves
@@ -164,8 +164,7 @@ func main() {
 
 	for {
 		fmt.Print("Please input " + "\n 1 for white  pieces \n 2 for black pieces \n -> ")
-		
-		
+
 		fmt.Scan(&choice)
 
 		if choice == 1 || choice == 2 {
@@ -213,6 +212,63 @@ func main() {
 
 }
 
+// esta funcion va a calcular todos los posibles movimientos 
+func calcularTodosLosMovimietos(y int , x int , colorContrario[6] string ) {
+
+	for i := 0; i < len(Board); i++ {
+		for j := 0; j < len(Board); j++ {
+
+			var val [][2]int
+
+			if Board[i][j] == " "+N[0]+" " || Board[i][j] == " "+N[1]+" " || Board[i][j] == " "+N[2]+" " || Board[i][j] == " "+N[3]+" " || Board[i][j] == " "+N[4]+" " || Board[i][j] == " "+N[5]+" " {
+
+				switch Board[i][j] {
+
+				case " " + N[0] + " ":
+					value_ := Pieces.Pawm_{y, x, Board, colorContrario , true}
+					val = value_.MovesCalculate()
+
+					for _, elem := range val {
+						val = append(val, elem)
+					}
+
+				case " " + N[1] + " ":
+					continue
+				case " " + N[2] + " ":
+					continue
+				case " " + N[3] + " ":
+					continue
+				case " " + N[4] + " ":
+					continue
+				case " " + N[5] + " ":
+					continue
+
+				}
+
+			} else if Board[i][j] == " "+B[0]+" " || Board[i][j] == " "+B[1]+" " || Board[i][j] == " "+B[2]+" " || Board[i][j] == " "+B[3]+" " || Board[i][j] == " "+B[4]+" " || Board[i][j] == " "+B[5]+" " {
+
+				switch Board[i][j] {
+
+				case " " + B[0] + " ":
+					continue
+				case " " + B[1] + " ":
+					continue
+				case " " + B[2] + " ":
+					continue
+				case " " + B[3] + " ":
+					continue
+				case " " + B[4] + " ":
+					continue
+				case " " + B[5] + " ":
+					continue
+
+				}
+			}
+		}
+	}
+
+}
+
 // this is for calls the moves to other pieces
 
 func llamarMovimientosLogicos(player string, colorContrario [6]string) {
@@ -220,13 +276,11 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 	var a [][2]int
 	y, x := logicChoises(player, "Escoge una posicion")
 	veri := false
-	
+
 	ix := 0
 	ix2 := false
 
 	for {
-		
-		
 
 		for {
 			if Board[y][x] == " - " || Board[y][x] == " "+colorContrario[0]+" " || Board[y][x] == " "+colorContrario[1]+" " || Board[y][x] == " "+colorContrario[2]+" " || Board[y][x] == " "+colorContrario[3]+" " || Board[y][x] == " "+colorContrario[4]+" " || Board[y][x] == " "+colorContrario[5]+" " {
@@ -237,7 +291,7 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			}
 		}
 
-		var vacia  [][2]int
+		var vacia [][2]int
 		a = vacia
 		Board__ = [9][9]string{
 
@@ -252,58 +306,56 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 		}
 
-		//Pawm 
+		//Pawm
 		if Board[y][x] == " "+B[0]+" " || Board[y][x] == " "+N[0]+" " {
 			fmt.Println(Board[y][x])
 
-			v1 := Pieces.Pawm_{y , x , Board, colorContrario}
+			v1 := Pieces.Pawm_{y, x, Board, colorContrario}
 			a = v1.MovesCalculate()
 
 		}
 		//Bishops
 		if Board[y][x] == " "+B[5]+" " || Board[y][x] == " "+N[5]+" " {
 			fmt.Println(Board[y][x])
-			v2 := Pieces.Bishops_{y , x , Board , colorContrario} 
+			v2 := Pieces.Bishops_{y, x, Board, colorContrario}
 			a = v2.MovesBishop()
-			
+
 		}
 
 		//Queen
 		if Board[y][x] == " "+B[2]+" " || Board[y][x] == " "+N[2]+" " {
 
 			fmt.Println(Board[y][x])
-			v3 := Pieces.Queen_{y , x , Board , colorContrario}
+			v3 := Pieces.Queen_{y, x, Board, colorContrario}
 
 			a = v3.MovesQueen()
 		}
 
 		//Rook
-		if Board[y][x] == " "+B[1]+" " || Board[y][x] == " "+N[1]+" "{
+		if Board[y][x] == " "+B[1]+" " || Board[y][x] == " "+N[1]+" " {
 
 			fmt.Println(Board[y][x])
-			v4 := Pieces.Rook_{ y , x , Board , colorContrario }
+			v4 := Pieces.Rook_{y, x, Board, colorContrario}
 			a = v4.MovesRook()
 		}
-		// Knight 
-		if Board[y][x] == " "+B[3]+" " || Board[y][x] == " "+N[3]+" "{
-		
+		// Knight
+		if Board[y][x] == " "+B[3]+" " || Board[y][x] == " "+N[3]+" " {
+
 			fmt.Println(Board[y][x])
-			v5 := Pieces.Knight_{ y , x , Board , colorContrario }
+			v5 := Pieces.Knight_{y, x, Board, colorContrario}
 			a = v5.MovesKnight()
 		}
 
 		// King
-		if Board[y][x] == " "+B[4]+" " || Board[y][x] == " "+N[4]+" "{
-		
+		if Board[y][x] == " "+B[4]+" " || Board[y][x] == " "+N[4]+" " {
+
 			fmt.Println(Board[y][x])
-			v6 := Pieces.King_{ y , x , Board , colorContrario }
+			v6 := Pieces.King_{y, x, Board, colorContrario}
 			a = v6.MovesKing()
 		}
 
-
-		
-		for i := 0; i < len(a); i++ {	
-			Board__[a[i][0]][a[i][1] ] = " o "
+		for i := 0; i < len(a); i++ {
+			Board__[a[i][0]][a[i][1]] = " o "
 		}
 		for i := 0; i < 9; i++ {
 			for j := 0; j < 9; j++ {
@@ -313,14 +365,13 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			fmt.Println()
 		}
 
-
 		if len(a) == 0 {
-			fmt.Println("La ficha està bloqueada"); 
+			fmt.Println("La ficha està bloqueada")
 			y, x = logicChoises(" - ", "Escoge una posicion -> ")
 
-		} 
+		}
 
-		if len(a) != 0{
+		if len(a) != 0 {
 			Y, X := logicChoises("", " Donde deseas moverte")
 			for i := 0; i < len(a); i++ {
 				if a[i][0] == Y && a[i][1] == X {
@@ -330,23 +381,20 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			}
 
 			if veri == true {
-		
+
 				Board[Y][x] = Board[y][x]
 				Board[y][x] = " - "
-	
+
 				ix2 = true
 			}
-		
-	
-			
-			if ix2 == true{
+
+			if ix2 == true {
 
 				break
 			}
 			ix++
 		}
-	
+
 	}
 
-	
 }

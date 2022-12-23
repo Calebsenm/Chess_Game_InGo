@@ -10,6 +10,7 @@ type Pawm_ struct {
 	X      int
 	Board_ [9][9]string
 	Color  [6]string
+	Llave  bool
 }
 
 func (objet Pawm_) MovesCalculate() [][2]int {
