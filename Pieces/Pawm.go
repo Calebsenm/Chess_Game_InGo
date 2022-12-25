@@ -12,14 +12,15 @@ var (
 	board_1           [9][9]string
 )
 
-type Pawm struct {
+type Pawm_ struct {
 	Y_1     int
 	X_1     int
 	Board_1 [9][9]string
 	Color_1 [6]string
+	Key_1 bool
 }
 
-func (pw * Pawm ) MovesPam() [][2]int {
+func (pw * Pawm_ ) MovesPawm() [][2]int {
 
 	var vacia [][2]int
 	listOfNumbersPawm = vacia
@@ -31,29 +32,59 @@ func (pw * Pawm ) MovesPam() [][2]int {
 
 
 	PawmAlgoritmo( -1 , 0 )
-	PawmAlgoritmo( -1 , -1)
-	PawmAlgoritmo( -1 , +1)
-	PawmAlgoritmo(  0 , -1)
-	PawmAlgoritmo(  0 , +1)
-	PawmAlgoritmo(  1 , -1)
-	PawmAlgoritmo(  1 ,  1)
-	PawmAlgoritmo(  1 ,  0)
+	PawmAlgoritmo(  1 , 0 )
+
+	if pw.Key_1 == true{
+		PawmAlgoritmo( -1 , -1 )
+		PawmAlgoritmo( -1 , +1 )
+		PawmAlgoritmo(  1 , -1 )
+		PawmAlgoritmo(  1 , +1 )
+	}
 		
-	return listOfNumbersKing
+	return listOfNumbersPawm
 }
 
-func PawmAlgoritmo(yChance_, xChance_ int) {
+func PawmAlgoritmo(yChance_, xChance_ int)   {
 
 	atactPiece_1 := board_1[y_1][x_1]
+
+
 	//fmt.Println(atactPiece____)
 	y1_1 := y_1
 	x1_1 := x_1
 
+	
 	y1_1 = y1_1 + yChance_
 	x1_1 = x1_1 + xChance_ 
 
 
 	if fueraRango__2(y1_1, x1_1) {
+
+		// para los movimientos de ataque 
+		
+		if y_1 == 1 || y_1 == 6 {
+		
+
+			if y_1 == 1{
+				if board_1[2][x1_1] == " - "  && board_1[3][x1_1] == " - " {
+					listOfNumbersPawm = append(listOfNumbersPawm, [2]int{2, x1_1})
+					listOfNumbersPawm = append(listOfNumbersPawm, [2]int{3, x1_1})
+
+				}
+			}
+		
+			if y_1 == 6{
+
+				if board_1[5][x1_1] == " - "  && board_1[4][x1_1] == " - " {
+					listOfNumbersPawm = append(listOfNumbersPawm, [2]int{5, x1_1})
+					listOfNumbersPawm = append(listOfNumbersPawm, [2]int{4, x1_1})
+
+				}
+			}
+		}
+
+		
+
 		if board_1[y1_1][x1_1] == " - " {
 			listOfNumbersPawm = append(listOfNumbersPawm, [2]int{y1_1, x1_1})
 		}
@@ -72,7 +103,7 @@ func PawmAlgoritmo(yChance_, xChance_ int) {
 		// black 
 		if fichaAtaca_1(atactPiece_1) == 2 {
 			if fichas_1(board_1[y1_1][x1_1], b_1){
-				listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_1, x1_1})
+				listOfNumbersPawm = append(listOfNumbersPawm, [2]int{y1_1, x1_1})
 			
 			}
 	

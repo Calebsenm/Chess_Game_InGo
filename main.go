@@ -18,31 +18,31 @@ var (
 	N = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	B = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
 
-	Board = [9][9]string{
-
-		{" 8 ", " " + N[1] + " ", " " + N[3] + " ", " " + N[5] + " ", " " + N[2] + " ", " " + N[4] + " ", " " + N[5] + " ", " " + N[3] + " ", " " + N[1] + " "},
-		{" 7 ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " "},
-		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " " ," " + B[0] + " "},
-		{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[2] + " ", " " + B[4] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
-		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
-	}
-
 	// Board = [9][9]string{
 
-	// 	{" 1 ", " " + N[1] + " ", " - ", " - ", " - ", " " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
-	// 	{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+	// 	{" 8 ", " " + N[1] + " ", " " + N[3] + " ", " " + N[5] + " ", " " + N[2] + " ", " " + N[4] + " ", " " + N[5] + " ", " " + N[3] + " ", " " + N[1] + " "},
+	// 	{" 7 ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " ", " " + N[0] + " "},
 	// 	{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 	// 	{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 	// 	{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 	// 	{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-	// 	{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-	// 	{" 1 ", " " + B[1] + " ", " - ", " - ", " - ", " " + B[4] + " ", " - ", " - ", " " + B[1] + " "},
+	// 	{" 2 ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " ", " " + B[0] + " " ," " + B[0] + " "},
+	// 	{" 1 ", " " + B[1] + " ", " " + B[3] + " ", " " + B[5] + " ", " " + B[2] + " ", " " + B[4] + " ", " " + B[5] + " ", " " + B[3] + " ", " " + B[1] + " "},
 	// 	{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	// }
+
+	Board = [9][9]string{
+
+		{" 8 ", " " + N[0] + " ", " - ", " - ", " - ", " " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
+		{" 7 ", " - ", " - ",  " " + B[3] + " ", " - ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 3 ", " - ", " - ", " - ", " - ", " - ", " " + B[5] + " ", " - ", " - "},
+		{" 2 ", " - ", " - ", " - ", " " + N[3] + " ", " - ", " - ", " - ", " - "},
+		{" 1 ", " " + B[0] + " ", " - ", " - ", " - ", " " + B[4] + " ", " - ", " - ", " " + B[1] + " "},
+		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
+	}
 	Board__ = [9][9]string{
 
 		{" 8 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
@@ -233,11 +233,13 @@ func calcularTodosLosMovimietos( ) {
 
 				case " " + N[0] + " ":
 					value_ := Pieces.Pawm_{y, x, Board, B, true}
-					val = value_.MovesCalculate()
+					val = value_.MovesPawm()
 
 					for _, elem := range val {
 						movimientosPosiblesNegros = append(movimientosPosiblesNegros, elem)
 					}
+
+					
 
 				case " " + N[1] + " ":
 					value_ := Pieces.Rook_{y, x, Board, B}
@@ -293,11 +295,12 @@ func calcularTodosLosMovimietos( ) {
 
 				case " " + B[0] + " ":
 					value_ := Pieces.Pawm_{y, x, Board, N, true}
-					val1 = value_.MovesCalculate()
+					val1 = value_.MovesPawm()
 			
 					for _, elem := range val1 {
 						movimientosPosiblesBlancos = append(movimientosPosiblesBlancos, elem)
 					}
+
 			
 				case " " + B[1] + " ":
 					value_ := Pieces.Rook_{y, x, Board, N}
@@ -388,7 +391,7 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			fmt.Println(Board[y][x])
 
 			v1 := Pieces.Pawm_{y, x, Board, colorContrario,false}
-			a = v1.MovesCalculate()
+			a = v1.MovesPawm()
 
 		}
 		//Bishops
@@ -433,8 +436,8 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 
 		calcularTodosLosMovimietos( )
 
-		fmt.Println(movimientosPosiblesBlancos)
-		fmt.Println(movimientosPosiblesNegros)
+		//fmt.Println(movimientosPosiblesBlancos)
+		//fmt.Println(movimientosPosiblesNegros)
 
 		for i := 0; i < len(movimientosPosiblesNegros); i++ {
 			Board__[movimientosPosiblesNegros[i][0]][movimientosPosiblesNegros[i][1]] = " o "
