@@ -1,6 +1,6 @@
 package Pieces;
 
-import "fmt"
+
 
 var(
 
@@ -67,7 +67,6 @@ func RookAlgoritmo(yChange , xChange int  ){
 				listOfNumbersRook = append(listOfNumbersRook, [2]int{y111 ,x111} )
 			}	
 
-			fmt.Println(fichaAtaca___( atactPiece ) )
 			if fichaAtaca___( atactPiece ) == 1{
 				if fichas___(board___[y111][x111], n___) {
 					listOfNumbersRook = append(listOfNumbersRook, [2]int{y111, x111})
@@ -127,8 +126,7 @@ func fichaAtaca___(atacaX___ string) int{
 func fichas___(ficha___ string , list___ [6] string) bool {
 	
 	for i := 0; i < len(list___); i++ {
-		fmt.Println(" " +list___[i] + " " +" -> "+ ficha___)
-		
+	
 		if " " +list___[i] + " " == ficha___ {
 			return true
 		}
