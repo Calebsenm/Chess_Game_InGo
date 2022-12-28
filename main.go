@@ -33,14 +33,14 @@ var (
 
 	Board = [9][9]string{
 
-		{" 8 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 7 ", " - ", " - "," " + N[0] + " ", " - ", " - ", " - ", " - ", " - "},
+		{" 8 ", " " + N[1] + " ", " - ", " - ", " - "," " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
+		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 1 ", " - ", " - ", " " + B[0] + " ", " - ", " - ", " - ", " - ", " - "},
+		{" 1 ",  " " + B[1] + " ", " - ", " - ", " - "," " +B[4]+" ", " - ", " - ",  " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
 	Board__ = [9][9]string{
@@ -426,12 +426,23 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 			a = v5.MovesKnight()
 		}
 
+        llave_Rey := false
 		// King
 		if Board[y][x] == " "+B[4]+" " || Board[y][x] == " "+N[4]+" " {
 
 			fmt.Println(Board[y][x])
 			v6 := Pieces.King_{y, x, Board, colorContrario}
 			a = v6.MovesKing()
+
+
+            // This is for the rosk
+
+            // para ver si se puede hacer hacia la isquierda
+            if Board [y][ x -1 ] == " - " && Board [y][x - 2]== " - " && y == 0 || y == 7 {
+                a = append(a,[2] int{ y , x - 2 } );
+                a = append(a,[2] int{ y , x + 2 } );
+                llave_Rey = true;            
+            }
 		}
 
 		calcularTodosLosMovimietos( )
@@ -471,11 +482,33 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 				}
 			}
 
+
 			if veri == true {
+                // para controlar el enrrosque , esto va a verificar si la ficha es un rey y el moviminto
 
-				Board[Y][x] = Board[y][x]
-				Board[y][x] = " - "
+				// fmt.Println(( X == 3 || X == 7 ))
+				// fmt.Println( X )
+                
+                if (Board[y][x] == " " + B[4] + " "|| Board[y][x] == " " + N[4] + " " ) && ( llave_Rey == true ) && ( X == 3 || X == 7 ) {
+                    Board[Y][X] = Board[y][x] 
 
+                    if X == 3{
+                        Board[y][ x - 1] = Board[y +3][1]
+                        Board[y][x] = " - "
+                        Board[y +3][1] = " _ "
+                    
+                    }	else if X == 7{
+						
+                            Board[y][x +1] = Board[y -4][8]
+                        	Board[y][x] = " - "
+                        	Board[y -4 ][8] = " - "
+                    }
+
+                } else{
+					
+				    Board[Y][X] = Board[y][x]
+				    Board[y][x] = " - "
+                }
 				ix2 = true
 			}
 
