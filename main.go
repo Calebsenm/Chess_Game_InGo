@@ -493,15 +493,15 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
                     Board[Y][X] = Board[y][x] 
 
                     if X == 3{
-                        Board[y][ x - 1] = Board[y +3][1]
+                        Board[y][ x - 1] = Board[y][x - 4]
                         Board[y][x] = " - "
-                        Board[y +3][1] = " _ "
+                        Board[y][x -4] = " - "
                     
                     }	else if X == 7{
 						
-                            Board[y][x +1] = Board[y -4][8]
+                            Board[y][x +1] = Board[y][x+3]
                         	Board[y][x] = " - "
-                        	Board[y -4 ][8] = " - "
+                        	Board[y ][x+3] = " - "
                     }
 
                 } else{
