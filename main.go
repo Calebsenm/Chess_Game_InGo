@@ -35,7 +35,7 @@ var (
 
 		{" 8 ", " " + N[1] + " ", " - ", " - ", " - "," " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
 		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 6 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - ", " " + B[2] + " ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
@@ -489,7 +489,7 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 				// fmt.Println(( X == 3 || X == 7 ))
 				// fmt.Println( X )
                 
-                if (Board[y][x] == " " + B[4] + " "|| Board[y][x] == " " + N[4] + " " ) && ( llave_Rey == true ) && ( X == 3 || X == 7 ) {
+                if (Board[y][x] == " " + B[4] + " "|| Board[y][x] == " " + N[4] + " " ) && ( llave_Rey == true ) && ( X == 3 || X == 7 ) && verificarNumeroPosicion(y , x , movimientosPosiblesBlancos) &&   verificarNumeroPosicion(y , x , movimientosPosiblesNegros){
                     Board[Y][X] = Board[y][x] 
 
                     if X == 3{
@@ -522,3 +522,29 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 	}
 
 }
+
+
+
+
+
+// para validar si los numeros estan en la lista
+func verificarNumeroPosicion( num1_ int , num2_ int , lisNum1_ [][2] int )bool {
+    validation := false
+
+    for i := 0; i < len (lisNum1_) ; i ++{
+        
+        if num1_ == lisNum1_[i][1] && num2_ == lisNum1_ [i][0]{
+            validation = true;
+        }
+    }
+    return validation;
+    
+}
+
+
+
+
+
+
+
+
