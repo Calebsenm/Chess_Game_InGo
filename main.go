@@ -35,7 +35,7 @@ var (
 
 		{" 8 ", " " + N[1] + " ", " - ", " - ", " - "," " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
 		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 6 ", " - ", " - ", " - ", " " + B[2] + " ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - ", " " + N[2] + " ", " - ", " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
@@ -250,8 +250,8 @@ func calcularTodosLosMovimietos( ) {
 					}
 
 				case " " + N[2] + " ":
-					value_ := Pieces.King_{y, x, Board, B}
-					val = value_.MovesKing()
+					value_ := Pieces.Queen_{y, x, Board, B}
+					val = value_.MovesQueen()
 					for _, elem := range val {
 						movimientosPosiblesNegros = append(movimientosPosiblesNegros, elem)
 					}
@@ -266,7 +266,7 @@ func calcularTodosLosMovimietos( ) {
 
 
 				case " " + N[4] + " ":
-					value_ := Pieces.King_{y, x, Board, B}
+					value_ := Pieces.King_{y, x, Board, B,movimientosPosiblesNegros ,movimientosPosiblesBlancos  }
                     val = value_.MovesKing()
 
                     for _, elem := range val {
@@ -310,8 +310,8 @@ func calcularTodosLosMovimietos( ) {
 						movimientosPosiblesBlancos = append(movimientosPosiblesBlancos, elem)
 					}
 			
-				case " " + B[2] + " ":
-					value_ := Pieces.King_{y, x, Board, N}
+				case " " + B[4] + " ":
+                    value_ := Pieces.King_{y, x, Board, N ,movimientosPosiblesBlancos ,movimientosPosiblesNegros}
 					val1 = value_.MovesKing()
 					for _, elem := range val1 {
 						movimientosPosiblesBlancos = append(movimientosPosiblesBlancos, elem)
@@ -326,9 +326,10 @@ func calcularTodosLosMovimietos( ) {
 					}
 			
 			
-				case " " + B[4] + " ":
-					value_ := Pieces.King_{y, x, Board, N}
-					val1 = value_.MovesKing()
+				case " " + B[2] + " ":
+					value_ := Pieces.Queen_{y, x, Board, N}
+					val1 = value_.MovesQueen()
+
 			
 					for _, elem := range val1 {
 						movimientosPosiblesBlancos = append(movimientosPosiblesBlancos, elem)
@@ -431,18 +432,10 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 		if Board[y][x] == " "+B[4]+" " || Board[y][x] == " "+N[4]+" " {
 
 			fmt.Println(Board[y][x])
-			v6 := Pieces.King_{y, x, Board, colorContrario}
+			v6 := Pieces.King_{y, x, Board, colorContrario, movimientosPosiblesNegros ,movimientosPosiblesBlancos}
+
 			a = v6.MovesKing()
-
-
-            // This is for the rosk
-
-            // para ver si se puede hacer hacia la isquierda
-            if Board [y][ x -1 ] == " - " && Board [y][x - 2]== " - " && y == 0 || y == 7 {
-                a = append(a,[2] int{ y , x - 2 } );
-                a = append(a,[2] int{ y , x + 2 } );
-                llave_Rey = true;            
-            }
+            llave_Rey = Pieces.TheKey
 		}
 
 		calcularTodosLosMovimietos( )
@@ -458,7 +451,7 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 		}
 		
 
-
+		
 		for i := 0; i < 9; i++ {
 			for j := 0; j < 9; j++ {
 
@@ -488,8 +481,9 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 
 				// fmt.Println(( X == 3 || X == 7 ))
 				// fmt.Println( X )
-                
-                if (Board[y][x] == " " + B[4] + " "|| Board[y][x] == " " + N[4] + " " ) && ( llave_Rey == true ) && ( X == 3 || X == 7 ) && verificarNumeroPosicion(y , x , movimientosPosiblesBlancos) &&   verificarNumeroPosicion(y , x , movimientosPosiblesNegros){
+                 
+
+                if (Board[y][x] == " " + B[4] + " "|| Board[y][x] == " " + N[4] + " " ) && (  llave_Rey == true ) && ( X == 3 || X == 7) {
                     Board[Y][X] = Board[y][x] 
 
                     if X == 3{
@@ -524,9 +518,6 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 }
 
 
-
-
-
 // para validar si los numeros estan en la lista
 func verificarNumeroPosicion( num1_ int , num2_ int , lisNum1_ [][2] int )bool {
     validation := false
@@ -540,11 +531,6 @@ func verificarNumeroPosicion( num1_ int , num2_ int , lisNum1_ [][2] int )bool {
     return validation;
     
 }
-
-
-
-
-
 
 
 
