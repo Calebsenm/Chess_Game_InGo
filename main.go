@@ -35,11 +35,11 @@ var (
 
 		{" 8 ", " " + N[1] + " ", " - ", " - ", " - "," " + N[4] + " ", " - ", " - ", " " + N[1] + " "},
 		{" 7 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 6 ", " - ", " - ", " - ", " " + N[2] + " ", " - ", " - ", " - ", " - "},
+		{" 6 ", " - ", " - ", " - "," - ", " - " , " - ", " - ", " - "},
 		{" 5 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 4 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
 		{" 3 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
-		{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " - "},
+		{" 2 ", " - ", " - ", " - ", " - ", " - ", " - ", " - ", " " +N[2] + " "},
 		{" 1 ",  " " + B[1] + " ", " - ", " - ", " - "," " +B[4]+" ", " - ", " - ",  " " + B[1] + " "},
 		{"   ", " A ", " B ", " C ", " D ", " E ", " F ", " G ", " H "},
 	}
@@ -444,7 +444,7 @@ func llamarMovimientosLogicos(player string, colorContrario [6]string) {
 		//fmt.Println(movimientosPosiblesNegros)
 
 		for i := 0; i < len(movimientosPosiblesNegros); i++ {
-			Board__[movimientosPosiblesNegros[i][0]][movimientosPosiblesNegros[i][1]] = " o "
+			//Board__[movimientosPosiblesNegros[i][0]][movimientosPosiblesNegros[i][1]] = " o "
 		}
 		for i := 0; i < len(movimientosPosiblesBlancos); i++ {
 			Board__[movimientosPosiblesBlancos[i][0]][movimientosPosiblesBlancos[i][1]] = " p "

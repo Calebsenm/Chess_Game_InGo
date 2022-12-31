@@ -1,7 +1,5 @@
 package Pieces
 
-import "fmt"
-
 
 var (
 	n_____ = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
@@ -41,10 +39,14 @@ func (Kin * King_) MovesKing() [][2]int {
     listFight2 = Kin.ListFight2_____ 
 
 
+    //Up
 	KingAlgoritmo( -1 ,  0, false )
-	KingAlgoritmo( -1 , -1, false )
-	KingAlgoritmo( -1 , +1, false )
-	KingAlgoritmo(  0 , -1, false )
+	// left UP
+    KingAlgoritmo( -1 , -1, false )
+	// left Up 
+    KingAlgoritmo( -1 , +1, false )
+	//left 
+    KingAlgoritmo(  0 , -1, false )
 	KingAlgoritmo(  0 , +1, false )
 	KingAlgoritmo(  1 , -1, false )
 	KingAlgoritmo(  1 ,  1, false )
@@ -75,17 +77,21 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
     
 		    //fmt.Println(fichaAtaca____(atactPiece____))
 
+    		var  listConparar [][2] int 
+			listConparar = append( listConparar, [2] int {y1_____,x1_____})
+
+
 		    // white 
 		    if fichaAtaca_____(atactPiece_____) == 1 {
 			    
-				fmt.Println( listNum_____(y1_____,x1_____,listFight1))
-
-				if board_____[y1_____][x1_____] == " - " && listNum_____(y1_____,x1_____,listFight1) == false{
+				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight1) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
-				}
+		            
+                
+                }
 	
 				
-				if fichas_____(board_____[y1_____][x1_____], n_____) && listNum_____(y1_____,x1_____,listFight1) == false{
+				if fichas_____(board_____[y1_____][x1_____], n_____) && listNum_____(listConparar[0][:],listFight1) == false{
 		
 				    listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 			    }
@@ -96,12 +102,12 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 		    if fichaAtaca_____(atactPiece_____) == 2 {
 
 
-				if board_____[y1_____][x1_____] == " - " && listNum_____(y1_____,x1_____,listFight2) == false{
+				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight2) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 				}
 
 				
-			    if fichas_____(board____[y1_____][x1_____], b_____)&& listNum_____(y1_____,x1_____,listFight2) == false{
+			    if fichas_____(board____[y1_____][x1_____], b_____)&& listNum_____(listConparar[0][:],listFight2) == false{
 				    listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 			
 			    }
@@ -117,23 +123,29 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
             validation3 :=  board_____[ay][ax -1] == " - "
             validation4 := false    
                     
-    
+			var  listConparar1 [][2] int 
+			listConparar1 = append( listConparar1 ,[2] int {y1_____,x1_____})
+            listConparar1 = append( listConparar1 ,[2] int {y1_____,x1_____ -1})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____, x1_____ +1})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____, x1_____ -2})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____+2})
+	
              // white 
 		    if fichaAtaca_____(atactPiece_____) == 1 {
 			
-                aValidation1 := listNum_____( ay ,ax,listFight1)
-                aValidation2 := listNum_____( ay ,ax-1,listFight1)
+                aValidation1 := listNum_____( listConparar1[0][:],listFight1)
+                aValidation2 := listNum_____( listConparar1[1][:],listFight1)
                 
                 if board_____[ay][ax+1]== " - "{
-                    aValidation3 := listNum_____( ay , ax+1,listFight1)
-                    aValidation4 := listNum_____( ay , ax + 2 ,listFight1)
+                    aValidation3 := listNum_____( listConparar1[2][:],listFight1)
+                    aValidation4 := listNum_____( listConparar1[4][:],listFight1)
                     
                     if  aValidation1  == false &&  aValidation2 == false &&  aValidation3 == false && aValidation4 == false {
                         validation4 = true
                     }
 
                 } else {
-                     aValidation4 := listNum_____( ay , ax - 2 ,listFight1) 
+                     aValidation4 := listNum_____( listConparar1[3][:] ,listFight1) 
 
                     if aValidation1 == false &&  aValidation2 == false && aValidation4  == false{
                         validation4 = true
@@ -145,12 +157,12 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 		    // black 
 		    if fichaAtaca_____(atactPiece_____) == 2 {
 			
-                 aValidation1 := listNum_____( ay ,ax ,listFight2)
-                 aValidation2 := listNum_____( ay ,ax-1,listFight2)
+                 aValidation1 := listNum_____( listConparar1[0][:] ,listFight2)
+                 aValidation2 := listNum_____( listConparar1[1][:],listFight2)
                                
                  if board_____[ay][ax+1]== " - "{
-                    aValidation3 := listNum_____( ay , ax+1,listFight2)
-                    aValidation4 := listNum_____( ay , ax + 2 ,listFight2) 
+                    aValidation3 := listNum_____( listConparar1[2][:],listFight2)
+                    aValidation4 := listNum_____( listConparar1[4][:],listFight2) 
 
 
                    if  aValidation1 == false &&  aValidation2  == false &&  aValidation3 == false && aValidation4 == false{
@@ -161,7 +173,7 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 
                 } else {
                     
-                    aValidation4 := listNum_____( ay , ax - 2 ,listFight2) 
+                    aValidation4 := listNum_____( listConparar1[3][:],listFight2) 
                     if  aValidation1  == false &&  aValidation2 == false && aValidation4 == false {
                             validation4 = true 
                     }
@@ -170,6 +182,7 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 		    }
 
             allValidations := validation1 && validation2 && validation3 && validation4
+            //fmt.Println(allValidations)
 
 
             if allValidations {
@@ -229,19 +242,27 @@ func fichas_____(ficha_____ string, list_____ [6]string) bool {
 
 
 // para validar si los numeros estan en la lista
-func listNum_____( num1_ int , num2_ int , lisNum1_ [][2] int )bool {
+func listNum_____(listNum2_ []int, lisNum1_ [][2]int) bool {
     validation := false
+    
+    for i:= 0; i < len(lisNum1_) ; i++{
+            
+        theNumberY  := listNum2_[0]
+        theNumberY1 := lisNum1_[i][0] 
 
-    for i := 0; i < len (lisNum1_) ; i ++{
-        
-        if num1_ == lisNum1_[i][0] && num2_ == lisNum1_ [i][1]{
-            validation = true;
+        theNumberX  := listNum2_[1]
+        thenumberx1 := lisNum1_ [i][1]
 
-			fmt.Println("MataPuercaso")
+        TheValues := theNumberY == theNumberY1 && thenumberx1  == theNumberX
+
+        if  TheValues == true { 
+            validation = true 
+
         }
     }
-    return validation;
-    
+
+    return validation
 }
+
 
 
