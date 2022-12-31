@@ -86,36 +86,31 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 			    
 				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight1) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
-		            
-                
                 }
 	
 				
-				if fichas_____(board_____[y1_____][x1_____], n_____) && listNum_____(listConparar[0][:],listFight1) == false{
-		
+				if fichas_____(board_____[y1_____][x1_____], n_____) && listNum_____(listConparar[0][:],listFight1) == true {
 				    listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 			    }
-	
+            }
 
-		    } 
 		    // black 
 		    if fichaAtaca_____(atactPiece_____) == 2 {
-
 
 				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight2) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 				}
-
 				
-			    if fichas_____(board____[y1_____][x1_____], b_____)&& listNum_____(listConparar[0][:],listFight2) == false{
+			    if fichas_____(board____[y1_____][x1_____], b_____)&& listNum_____(listConparar[0][:],listFight2) == true {
 				    listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 			
 			    }
-	
 		    }
+
+
         } 
 
-        if question == true{
+        if question == true {
 
             ay   ,   ax :=  y1_____ ,  x1_____
             validation1 :=  board_____[ay][ax] == " - " 
@@ -124,11 +119,11 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
             validation4 := false    
                     
 			var  listConparar1 [][2] int 
-			listConparar1 = append( listConparar1 ,[2] int {y1_____,x1_____})
-            listConparar1 = append( listConparar1 ,[2] int {y1_____,x1_____ -1})
-			listConparar1 = append( listConparar1 ,[2] int {y1_____, x1_____ +1})
-			listConparar1 = append( listConparar1 ,[2] int {y1_____, x1_____ -2})
-			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____+2})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____   })
+            listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____ -1})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____ +1})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____ -2})
+			listConparar1 = append( listConparar1 ,[2] int {y1_____ , x1_____ +2})
 	
              // white 
 		    if fichaAtaca_____(atactPiece_____) == 1 {
@@ -140,14 +135,14 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
                     aValidation3 := listNum_____( listConparar1[2][:],listFight1)
                     aValidation4 := listNum_____( listConparar1[4][:],listFight1)
                     
-                    if  aValidation1  == false &&  aValidation2 == false &&  aValidation3 == false && aValidation4 == false {
+                    if  aValidation1  == true &&  aValidation2 == true &&  aValidation3 == true && aValidation4 == true {
                         validation4 = true
                     }
 
                 } else {
                      aValidation4 := listNum_____( listConparar1[3][:] ,listFight1) 
 
-                    if aValidation1 == false &&  aValidation2 == false && aValidation4  == false{
+                    if aValidation1 == true  &&  aValidation2 == true && aValidation4  == true {
                         validation4 = true
                     }
                 } 
@@ -165,18 +160,19 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
                     aValidation4 := listNum_____( listConparar1[4][:],listFight2) 
 
 
-                   if  aValidation1 == false &&  aValidation2  == false &&  aValidation3 == false && aValidation4 == false{
-
+                   if  aValidation1 == true  &&  aValidation2  == true &&  aValidation3 == true  && aValidation4 == true {
                             validation4 = true
                    }
                
 
-                } else {
-                    
+
+                } else { 
                     aValidation4 := listNum_____( listConparar1[3][:],listFight2) 
-                    if  aValidation1  == false &&  aValidation2 == false && aValidation4 == false {
+                    if  aValidation1  == true &&  aValidation2 == true && aValidation4 == true {
                             validation4 = true 
                     }
+
+
                 } 
 
 		    }
