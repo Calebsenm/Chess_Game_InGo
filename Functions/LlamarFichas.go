@@ -168,4 +168,4 @@ func LlamarMovimientoFichas(player string, colorContrario [6]string , board [9][
 // 	}
 // 	return validation
 
-// }
+// }e
