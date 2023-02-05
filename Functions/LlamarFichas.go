@@ -4,25 +4,32 @@ import (
 	"chess/Pieces"
 	"fmt"
 
-)
+);
 
 var(
 	N = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	B = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
-)
+	Board [9][9] string
+
+);
+
 
 // this is for calls the moves to other pieces 
-func LlamarMovimientoFichas(player string, colorContrario [6]string , Board [9][9]string ) {
+func LlamarMovimientoFichas(player string, colorContrario [6]string , board [9][9]string ) ( [9][9] string ) {
 
+	// update the board
+	Board =  board;
+
+	//llama el  movimiento de juego 
+	y, x := CambioLetraNumero(player, " Escoge una posicion > ");
 	
-	y, x := CambioLetraNumero(player, "Escoge una posicion");
 	veri := false
 
-	ix  := 0
+	
 	ix2 := false
 	var movimientosPosiblesBlancos, movimientosPosiblesNegros   = calcularTodosLosMovimietos(Board);
 	
-	
+	NumeroIteraciones := 0;
 	for {
 
 		for {
@@ -94,7 +101,9 @@ func LlamarMovimientoFichas(player string, colorContrario [6]string , Board [9][
 		}
 
 		if len(listaDePosiciones) != 0 {
-			Y, X := CambioLetraNumero("", " Donde deseas moverte")
+			
+			Y, X := CambioLetraNumero("", " Donde deseas moverte > ");
+
 			for i := 0; i < len(listaDePosiciones); i++ {
 				if listaDePosiciones[i][0] == Y && listaDePosiciones[i][1] == X {
 					veri = true
@@ -102,7 +111,7 @@ func LlamarMovimientoFichas(player string, colorContrario [6]string , Board [9][
 				}
 			}
 
-			if veri == true {
+			if veri{
 				// para controlar el enrrosque , esto va a verificar si la ficha es un rey y el moviminto
 
 				if (Board[y][x] == " "+B[4]+" " || Board[y][x] == " "+N[4]+" ") && (llave_Rey == true) && (X == 3 || X == 7) {
@@ -129,27 +138,34 @@ func LlamarMovimientoFichas(player string, colorContrario [6]string , Board [9][
 			}
 
 			if ix2 == true {
-
 				break
 			}
-			ix++
+			
+			NumeroIteraciones ++;
 		}
 
 	}
 
+
+
+	
+	return Board;
 }
 
 
 
-// para validar si los numeros estan en la lista
-func verificarNumeroPosicion(num1_ int, num2_ int, lisNum1_ [][2]int) bool {
-	validation := false
 
-	for i := 0; i < len(lisNum1_); i++ {
-		if num1_ == lisNum1_[i][1] && num2_ == lisNum1_[i][0] {
-			validation = true
-		}
-	}
-	return validation
 
-}
+
+// // para validar si los numeros estan en la lista
+// func verificarNumeroPosicion(num1_ int, num2_ int, lisNum1_ [][2]int) bool {
+// 	validation := false
+
+// 	for i := 0; i < len(lisNum1_); i++ {
+// 		if num1_ == lisNum1_[i][1] && num2_ == lisNum1_[i][0] {
+// 			validation = true
+// 		}
+// 	}
+// 	return validation
+
+// }
