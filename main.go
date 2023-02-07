@@ -5,6 +5,12 @@
 // i delete the proyect in nov 21 / 2022
 // i start the proyect in  nov 21 / 2022
 // refactorizacion del codigo 22 / enero /2023 
+// refactorizacion del codigo 4 / febrero /2023
+
+// By Caleb Seña Melo : Apasionado A la programacion
+// Quise Hacer este proyecto para aprender un poquito de Go ademas de OOP y un codigo limpio
+// To Do verificar el hackemate 
+
 
 package main
 

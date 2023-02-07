@@ -4,7 +4,6 @@ package Pieces
 var (
 	n_____ = [6]string{"\u2659", "\u2656", "\u2655", "\u2658", "\u2654", "\u2657"}
 	b_____ = [6]string{"\u265F", "\u265C", "\u265B", "\u265E", "\u265A", "\u265D"}
-
 	x_____ int
 	y_____ int
 
@@ -72,18 +71,14 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
     TheKey = false 
 
 	if fueraRango_____(y1_____, x1_____) {
-
         if question == false {
     
 		    //fmt.Println(fichaAtaca____(atactPiece____))
-
     		var  listConparar [][2] int 
 			listConparar = append( listConparar, [2] int {y1_____,x1_____})
 
-
 		    // white 
 		    if fichaAtaca_____(atactPiece_____) == 1 {
-			    
 				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight1) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
                 }
@@ -96,7 +91,6 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 
 		    // black 
 		    if fichaAtaca_____(atactPiece_____) == 2 {
-
 				if board_____[y1_____][x1_____] == " - " && listNum_____(listConparar[0][:],listFight2) == true {
 					listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
 				}
@@ -159,9 +153,8 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
                     aValidation3 := listNum_____( listConparar1[2][:],listFight2)
                     aValidation4 := listNum_____( listConparar1[4][:],listFight2) 
 
-
                    if  aValidation1 == true  &&  aValidation2  == true &&  aValidation3 == true  && aValidation4 == true {
-                            validation4 = true
+                        validation4 = true
                    }
                
 
@@ -169,7 +162,7 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
                 } else { 
                     aValidation4 := listNum_____( listConparar1[3][:],listFight2) 
                     if  aValidation1  == true &&  aValidation2 == true && aValidation4 == true {
-                            validation4 = true 
+                        validation4 = true 
                     }
 
 
@@ -179,7 +172,6 @@ func KingAlgoritmo(yChance_ int , xChance_ int , question bool) {
 
             allValidations := validation1 && validation2 && validation3 && validation4
             //fmt.Println(allValidations)
-
 
             if allValidations {
 			    listOfNumbersKing = append(listOfNumbersKing, [2]int{y1_____, x1_____})
