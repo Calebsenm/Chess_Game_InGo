@@ -35,9 +35,8 @@ func (pw *Pawm_) MovesPawm() [][2]int {
 		PawmAlgoritmo(1, 0)
 	}
 
-
 	if pw.Key_1 == true {
-		
+
 		if pw.Color_1 == n_1 {
 			PawmAlgoritmo(-1, -1)
 			PawmAlgoritmo(-1, +1)
